@@ -22,6 +22,8 @@ import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MagnetHealthValue;
 
+import edu.wpi.first.hal.PowerDistributionFaults;
+import edu.wpi.first.hal.PowerDistributionStickyFaults;
 import edu.wpi.first.hal.can.CANStatus;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistribution;
@@ -65,8 +67,8 @@ public final class CanDropoutDiagnostics {
     private double lastPhoenixBusPoll = -1e9;
     private CANStatus prevRio = null;
     private com.ctre.phoenix6.CANBus.CANBusStatus prevPhoenix = null;
-    private PowerDistribution.StickyFaults prevPdhSticky = null;
-    private PowerDistribution.Faults prevPdhFaults = null;
+    private PowerDistributionStickyFaults prevPdhSticky = null;
+    private PowerDistributionFaults prevPdhFaults = null;
     private boolean prevBrownout = false;
 
     public record Device(String role, String kind, int id) {}
@@ -127,7 +129,7 @@ public final class CanDropoutDiagnostics {
             if (!clear.isOK()) out.line("  clearStickyFaults -> " + clear);
         }
         if (pdh != null) {
-            PowerDistribution.StickyFaults sf = pdh.getStickyFaults();
+            PowerDistributionStickyFaults sf = pdh.getStickyFaults();
             out.line("PDH sticky: " + pdhSticky(sf, pdh.getNumChannels()));
             pdh.clearStickyFaults();
         }
@@ -256,8 +258,8 @@ public final class CanDropoutDiagnostics {
 
     private void pollPdh(String ctxTime) {
         if (pdh == null || loop % 5 != 0) return;
-        PowerDistribution.Faults f = pdh.getFaults();
-        PowerDistribution.StickyFaults sf = pdh.getStickyFaults();
+        PowerDistributionFaults f = pdh.getFaults();
+        PowerDistributionStickyFaults sf = pdh.getStickyFaults();
         int n = pdh.getNumChannels();
         if (prevPdhFaults != null) {
             String a = pdhFaults(prevPdhFaults, n), b = pdhFaults(f, n);
@@ -278,7 +280,7 @@ public final class CanDropoutDiagnostics {
         Logger.recordOutput("CanDiag/PDH/ChannelCurrents", pdh.getAllCurrents());
     }
 
-    private static String pdhFaults(PowerDistribution.Faults f, int n) {
+    private static String pdhFaults(PowerDistributionFaults f, int n) {
         List<String> l = new ArrayList<>();
         if (f.Brownout) l.add("Brownout");
         if (f.CanWarning) l.add("CanWarning");
@@ -286,7 +288,7 @@ public final class CanDropoutDiagnostics {
         return l.isEmpty() ? "none" : String.join("|", l);
     }
 
-    private static String pdhSticky(PowerDistribution.StickyFaults f, int n) {
+    private static String pdhSticky(PowerDistributionStickyFaults f, int n) {
         List<String> l = new ArrayList<>();
         if (f.Brownout) l.add("Brownout");
         if (f.CanWarning) l.add("CanWarning");
