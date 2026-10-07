@@ -64,10 +64,12 @@ In SmartDashboard or Elastic, type text into `CanDiag/Note` (for example `wiggli
 
 ## Pulling the log
 
-The roboRIO for team 1405 is at 10.14.5.2. Use WinSCP or the following command (user `lvuser`, empty password):
+Connect to the robot and run the VS Code task `PullCanDiagLogs`, or run this from the repo root:
 
 ```
-scp "lvuser@10.14.5.2:/home/lvuser/logs/candiag/*.txt" .
+python tools/can-debug/pull_can_logs.py            # candiag_*.txt into can-debug-logs/
+python tools/can-debug/pull_can_logs.py --wpilog 1 # plus the newest .wpilog
 ```
 
-Send the newest `.txt` file. The matching `.wpilog` is useful too if the text log alone isn't conclusive.
+`can-debug-logs/` is committed (not git-ignored), so commit the logs and push them for review. The roboRIO's
+`lvuser` has an empty password: if scp prompts for one, press Enter.

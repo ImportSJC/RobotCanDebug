@@ -168,6 +168,14 @@
                 }
             },
             "problemMatcher": []
+        },
+        {
+            "label": "PullCanDiagLogs",
+            "detail": "Copy CAN dropout diagnostic logs from the roboRIO into can-debug-logs/ (committed)",
+            "type": "process",
+            "command": "python",
+            "args": ["${workspaceFolder}/tools/can-debug/pull_can_logs.py"],
+            "problemMatcher": []
         }
     ],
     "inputs": [
