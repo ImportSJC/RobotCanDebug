@@ -11,12 +11,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -26,6 +28,7 @@ import edu.wpi.first.hal.PowerDistributionFaults;
 import edu.wpi.first.hal.PowerDistributionStickyFaults;
 import edu.wpi.first.hal.can.CANStatus;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotController;
@@ -50,6 +53,9 @@ public final class CanDropoutDiagnostics {
     private static final int FAULT_POLL_DIVISOR = 5;
     private static final double ENABLED_STATUS_PERIOD = 1.0;
     private static final double DISABLED_STATUS_PERIOD = 5.0;
+    private static final double SAMPLER_PERIOD = 0.005;
+    private static final double SLOW_LOOP_SECONDS = 0.040;
+    private static final int SLOW_LOOP_LINES_PER_WINDOW = 60;
 
     private final List<Monitor> monitors = new ArrayList<>();
     private final CANBus bus;
@@ -70,6 +76,11 @@ public final class CanDropoutDiagnostics {
     private PowerDistributionStickyFaults prevPdhSticky = null;
     private PowerDistributionFaults prevPdhFaults = null;
     private boolean prevBrownout = false;
+
+    private final ConcurrentLinkedQueue<double[]> gapEvents = new ConcurrentLinkedQueue<>();
+    private final BaseStatusSignal[] fastHeartbeats;
+    private final Notifier sampler;
+    private final LoopTimer loopTimer = new LoopTimer();
 
     public record Device(String role, String kind, int id) {}
 
@@ -103,7 +114,14 @@ public final class CanDropoutDiagnostics {
             monitors.add(m);
         }
 
+        fastHeartbeats = monitors.stream().map(m -> m.hbFast).toArray(BaseStatusSignal[]::new);
+
         bootSnapshot();
+        sampler = new Notifier(this::sample);
+        sampler.setName("CanDiagSampler");
+        sampler.startPeriodic(SAMPLER_PERIOD);
+        out.line("frame gaps are measured by a separate " + ms(SAMPLER_PERIOD)
+                + "ms sampler thread, independent of robot loop timing.");
         SmartDashboard.putString("CanDiag/Note", "");
         SmartDashboard.putBoolean("CanDiag/Mark", false);
         out.line("Type text into SmartDashboard 'CanDiag/Note' or toggle 'CanDiag/Mark' to stamp the log"
@@ -136,6 +154,34 @@ public final class CanDropoutDiagnostics {
         out.line("sticky faults cleared on all devices; from here on a STICKY event means it happened this run.");
     }
 
+    /** Runs on the sampler thread: records the receive-time gap between consecutive heartbeat frames. */
+    private void sample() {
+        BaseStatusSignal.refreshAll(fastHeartbeats);
+        for (int i = 0; i < monitors.size(); i++) {
+            Monitor m = monitors.get(i);
+            if (!m.hbFast.getStatus().isOK()) continue;
+            double ts = m.hbFast.getTimestamp().getTime();
+            double last = m.fastLastTs;
+            if (ts == last) continue;
+            if (last > 0) {
+                double gap = ts - last;
+                if (gap > m.fastMaxGap) m.fastMaxGap = gap;
+                if (gap > GAP_WARN_SECONDS) gapEvents.add(new double[] {i, ts, gap});
+            }
+            m.fastLastTs = ts;
+        }
+    }
+
+    /** Call first thing in robotPeriodic(). */
+    public void beginLoop() {
+        loopTimer.begin(this);
+    }
+
+    /** Call after each robotPeriodic() section with that section's name. */
+    public void lap(String section) {
+        loopTimer.lap(section);
+    }
+
     public void periodic() {
         double now = Timer.getFPGATimestamp();
         double dt = Double.isNaN(lastLoopTime) ? 0 : now - lastLoopTime;
@@ -155,6 +201,7 @@ public final class CanDropoutDiagnostics {
         pollRio(ctxTime);
         pollPdh(ctxTime);
 
+        drainGaps(ctxTime);
         boolean pollFaults = loop % FAULT_POLL_DIVISOR == 0;
         for (Monitor m : monitors) {
             m.update(now, pollFaults, enabled, (msg) -> out.line("[" + ctxTime + "] " + msg + "  | " + context()),
@@ -174,7 +221,38 @@ public final class CanDropoutDiagnostics {
         }
 
         recordAkit(enabled, dt);
+        loopTimer.lap("candiag");
         if (loop % 10 == 0) out.flush();
+    }
+
+    private void drainGaps(String ctxTime) {
+        double[] e;
+        while ((e = gapEvents.poll()) != null) {
+            Monitor m = monitors.get((int) e[0]);
+            DevStats en = enableStats.dev(m);
+            en.gap(e[2]);
+            lifetime.dev(m).gap(e[2]);
+            if (e[2] <= STALE_SECONDS && en.gapLines++ < 40)
+                out.line(String.format(Locale.US, "[%s] GAP %s %.0fms between frames (not a full dropout)  | %s",
+                        ctxTime, m.label(), e[2] * 1000, context()));
+        }
+    }
+
+    private void slowLoop(double dt, Map<String, Double> sections, double outside, double gcMs) {
+        BusStats st = enableStats;
+        for (BusStats b : new BusStats[] {st, lifetime}) {
+            sections.forEach(b::section);
+            b.section("outsideRobotPeriodic", outside);
+        }
+        lifetime.slowLoops += dt > SLOW_LOOP_SECONDS ? 1 : 0;
+        if (dt <= SLOW_LOOP_SECONDS) return;
+        st.slowLoops++;
+        if (st.slowLines++ >= SLOW_LOOP_LINES_PER_WINDOW) return;
+        StringBuilder s = new StringBuilder(String.format(Locale.US, "[t=%.3f] SLOW LOOP dt=%.0fms:",
+                Timer.getFPGATimestamp(), dt * 1000));
+        sections.forEach((k, v) -> { if (v >= 1.0) s.append(String.format(Locale.US, " %s=%.0f", k, v)); });
+        s.append(String.format(Locale.US, " outsideRobotPeriodic=%.0f gc=%.0f (ms)", outside, gcMs));
+        out.line(s.toString());
     }
 
     private void onEnable(double now) {
@@ -305,7 +383,7 @@ public final class CanDropoutDiagnostics {
                 prevRio.txFullCount, prevRio.busOffCount));
         s.append(String.format(Locale.US, " batt=%.2fV", RobotController.getBatteryVoltage()));
         StringBuilder down = new StringBuilder();
-        for (Monitor m : monitors) if (!m.connected) down.append(m.shortLabel()).append(',');
+        for (Monitor m : monitors) if (!m.connected && m.everSeen) down.append(m.shortLabel()).append(',');
         s.append(" down=[").append(down.length() == 0 ? "" : down.substring(0, down.length() - 1)).append(']');
         return s.toString();
     }
@@ -315,6 +393,7 @@ public final class CanDropoutDiagnostics {
         if (prevRio != null) s.append(String.format(Locale.US, "util=%3.0f%% REC=%3d TEC=%3d txF=%d | ",
                 prevRio.percentBusUtilization * 100, prevRio.receiveErrorCount, prevRio.transmitErrorCount,
                 prevRio.txFullCount));
+        if (prevPhoenix != null) s.append(String.format(Locale.US, "phx=%3.0f%% | ", prevPhoenix.BusUtilization * 100));
         s.append(String.format(Locale.US, "batt=%.2f |", RobotController.getBatteryVoltage()));
         for (Monitor m : monitors) {
             if (m.kind.equals("CANcoder")) s.append(String.format(Locale.US, " %s:%s/%s", m.shortLabel(),
@@ -338,9 +417,12 @@ public final class CanDropoutDiagnostics {
         for (Monitor m : monitors) {
             if (!m.kind.equals("CANcoder")) continue;
             s.append(String.format(Locale.US, " %s %s maxGap=%.0fms V=%s", m.shortLabel(), m.connected ? "ok" : "DOWN",
-                    m.windowMaxGap * 1000, m.supplyV == null ? "?" : f2(m.supplyV.getValueAsDouble())));
-            m.windowMaxGap = 0;
+                    m.fastMaxGap * 1000, m.supplyV == null ? "?" : f2(m.supplyV.getValueAsDouble())));
+            m.fastMaxGap = 0;
         }
+        StringBuilder absent = new StringBuilder();
+        for (Monitor m : monitors) if (!m.everSeen) absent.append(m.shortLabel()).append(' ');
+        if (absent.length() > 0) s.append(" | absent: ").append(absent.toString().trim());
         out.line(s.toString());
     }
 
@@ -355,12 +437,18 @@ public final class CanDropoutDiagnostics {
         out.line(String.format(Locale.US,
                 "power: battery min=%.2fV | rio brownouts=%d | pdh min=%.2fV max total=%.0fA | loop dt max=%.0fms overruns(>25ms)=%d",
                 st.minBattery, st.brownouts, st.minPdhV, st.maxPdhA, st.maxDt * 1000, st.overruns));
+        out.line(String.format(Locale.US, "loop: slow loops(>%.0fms)=%d | per-section ms avg/max:%s", SLOW_LOOP_SECONDS * 1000,
+                st.slowLoops, st.sectionSummary()));
         out.line(String.format(Locale.US, "%-26s %8s %9s %10s %10s %9s %9s  %s", "device", "dropouts", "down(s)",
                 "maxGap(ms)", "gaps>60ms", "minV", "maxA", "faults seen"));
         boolean anyCoderDrop = false, anyCoderBoot = false, anyRemoteReset = false, anyRemoteInvalid = false,
                 anyTalonDrop = false, anyUndervolt = false;
         for (Monitor m : monitors) {
             DevStats d = st.dev(m);
+            if (!m.everSeen) {
+                out.line(String.format(Locale.US, "%-26s   ABSENT since boot (never responded)", m.label()));
+                continue;
+            }
             out.line(String.format(Locale.US, "%-26s %8d %9.2f %10.0f %10d %9s %9s  %s", m.label(), d.dropouts,
                     d.downTime, d.maxGap * 1000, d.gapsOverWarn, Double.isInfinite(d.minV) ? "?" : f2(d.minV),
                     d.maxA < 0 ? "-" : f1(d.maxA), d.faults.isEmpty() ? "-" : String.join("|", d.faults)));
@@ -430,7 +518,7 @@ public final class CanDropoutDiagnostics {
             Logger.recordOutput(k + "ActiveFaults", m.activeFaults());
         }
         StringBuilder down = new StringBuilder();
-        for (Monitor m : monitors) if (!m.connected) down.append(m.shortLabel()).append(' ');
+        for (Monitor m : monitors) if (!m.connected && m.everSeen) down.append(m.shortLabel()).append(' ');
         SmartDashboard.putString("CanDiag/Down", down.toString().trim());
     }
 
@@ -456,6 +544,10 @@ public final class CanDropoutDiagnostics {
         final String role, kind;
         final int id;
         final StatusSignal<?> heartbeat;
+        final StatusSignal<?> hbFast;
+        volatile double fastLastTs = 0;
+        volatile double fastMaxGap = 0;
+        boolean absentLogged = false;
         final BaseStatusSignal supplyV;
         final BaseStatusSignal supplyA;
         final StatusSignal<MagnetHealthValue> magnet;
@@ -471,17 +563,16 @@ public final class CanDropoutDiagnostics {
         boolean connected = true;
         boolean everSeen = false;
         double downSince = 0;
-        double lastFrameTs = 0;
         double lastAge = 0;
-        double windowMaxGap = 0;
 
-        private Monitor(Device d, StatusSignal<?> heartbeat, BaseStatusSignal supplyV, BaseStatusSignal supplyA,
+        private Monitor(Device d, StatusSignal<?> heartbeat, StatusSignal<?> hbFast, BaseStatusSignal supplyV, BaseStatusSignal supplyA,
                 StatusSignal<MagnetHealthValue> magnet, StatusSignal<Integer> version,
                 java.util.function.Supplier<StatusCode> clearSticky) {
             this.role = d.role();
             this.kind = d.kind();
             this.id = d.id();
             this.heartbeat = heartbeat;
+            this.hbFast = hbFast;
             this.supplyV = supplyV;
             this.supplyA = supplyA;
             this.magnet = magnet;
@@ -508,7 +599,8 @@ public final class CanDropoutDiagnostics {
 
         static Monitor cancoder(Device d, CANBus bus) {
             CANcoder c = new CANcoder(d.id(), bus);
-            Monitor m = new Monitor(d, c.getAbsolutePosition(false), c.getSupplyVoltage(false), null,
+            Monitor m = new Monitor(d, c.getAbsolutePosition(false),
+                    new CANcoder(d.id(), bus).getAbsolutePosition(false), c.getSupplyVoltage(false), null,
                     c.getMagnetHealth(false), c.getVersion(false), c::clearStickyFaults);
             m.fault("Undervoltage", c.getFault_Undervoltage(false), c.getStickyFault_Undervoltage(false));
             m.fault("BootDuringEnable", c.getFault_BootDuringEnable(false), c.getStickyFault_BootDuringEnable(false));
@@ -519,7 +611,8 @@ public final class CanDropoutDiagnostics {
 
         static Monitor talon(Device d, CANBus bus) {
             TalonFX t = new TalonFX(d.id(), bus);
-            Monitor m = new Monitor(d, t.getPosition(false), t.getSupplyVoltage(false), t.getSupplyCurrent(false),
+            Monitor m = new Monitor(d, t.getPosition(false), new TalonFX(d.id(), bus).getPosition(false),
+                    t.getSupplyVoltage(false), t.getSupplyCurrent(false),
                     null, t.getVersion(false), t::clearStickyFaults);
             m.fault("Undervoltage", t.getFault_Undervoltage(false), t.getStickyFault_Undervoltage(false));
             m.fault("BootDuringEnable", t.getFault_BootDuringEnable(false), t.getStickyFault_BootDuringEnable(false));
@@ -535,7 +628,8 @@ public final class CanDropoutDiagnostics {
 
         static Monitor pigeon(Device d, CANBus bus) {
             Pigeon2 p = new Pigeon2(d.id(), bus);
-            Monitor m = new Monitor(d, p.getYaw(false), p.getSupplyVoltage(false), null, null, p.getVersion(false),
+            Monitor m = new Monitor(d, p.getYaw(false), new Pigeon2(d.id(), bus).getYaw(false),
+                    p.getSupplyVoltage(false), null, null, p.getVersion(false),
                     p::clearStickyFaults);
             m.fault("Undervoltage", p.getFault_Undervoltage(false), p.getStickyFault_Undervoltage(false));
             m.fault("BootDuringEnable", p.getFault_BootDuringEnable(false), p.getStickyFault_BootDuringEnable(false));
@@ -557,27 +651,23 @@ public final class CanDropoutDiagnostics {
             return l.toArray(String[]::new);
         }
 
-        void resetEnableWindow() { windowMaxGap = 0; }
+        void resetEnableWindow() { fastMaxGap = 0; }
 
         void update(double now, boolean pollFaults, boolean enabled, java.util.function.Consumer<String> log,
                 DevStats en, DevStats life) {
             BaseStatusSignal.refreshAll(fast);
-            double ts = heartbeat.getTimestamp().getTime();
             boolean ok = heartbeat.getStatus().isOK();
-            if (ok && ts != lastFrameTs) {
-                if (lastFrameTs > 0) {
-                    double gap = ts - lastFrameTs;
-                    windowMaxGap = Math.max(windowMaxGap, gap);
-                    en.gap(gap);
-                    life.gap(gap);
-                    if (gap > GAP_WARN_SECONDS && gap <= STALE_SECONDS && en.gapLines++ < 40)
-                        log.accept(String.format(Locale.US, "GAP %s %.0fms between frames (not a full dropout)", label(), gap * 1000));
-                }
-                lastFrameTs = ts;
-                everSeen = true;
-            }
-            lastAge = everSeen ? Math.max(0, now - lastFrameTs) : Double.POSITIVE_INFINITY;
+            double lastTs = fastLastTs;
+            if (lastTs > 0) everSeen = true;
+            lastAge = everSeen ? Math.max(0, Utils.getCurrentTimeSeconds() - lastTs) : Double.POSITIVE_INFINITY;
             boolean nowConnected = ok && everSeen && lastAge <= STALE_SECONDS;
+            if (!everSeen) {
+                if (!absentLogged) log.accept("ABSENT " + label() + " has not responded since boot (status="
+                        + heartbeat.getStatus() + "); not counted as a dropout");
+                absentLogged = true;
+                connected = false;
+                return;
+            }
             if (supplyV != null && nowConnected) {
                 en.voltage(supplyV.getValueAsDouble());
                 life.voltage(supplyV.getValueAsDouble());
@@ -650,7 +740,21 @@ public final class CanDropoutDiagnostics {
         double utilSum, maxUtil, phxMaxUtil, minBattery = Double.POSITIVE_INFINITY, minPdhV = Double.POSITIVE_INFINITY,
                 maxPdhA, maxDt;
         long utilN;
-        int maxRec, maxTec, phxMaxRec, phxMaxTec, brownouts, overruns, txFullEventsLogged;
+        int maxRec, maxTec, phxMaxRec, phxMaxTec, brownouts, overruns, txFullEventsLogged, slowLoops, slowLines;
+        final Map<String, double[]> sections = new LinkedHashMap<>();
+
+        void section(String name, double ms) {
+            double[] a = sections.computeIfAbsent(name, k -> new double[3]);
+            a[0] += ms;
+            a[1] = Math.max(a[1], ms);
+            a[2]++;
+        }
+
+        String sectionSummary() {
+            StringBuilder s = new StringBuilder();
+            sections.forEach((k, a) -> s.append(String.format(Locale.US, " %s=%.1f/%.0f", k, a[0] / Math.max(1, a[2]), a[1])));
+            return s.length() == 0 ? " (no lap() calls)" : s.toString();
+        }
         int firstTxFull = -1, lastTxFull, firstBusOff = -1, lastBusOff;
         int phxFirstTxFull = -1, phxLastTxFull, phxFirstBusOff = -1, phxLastBusOff;
 
@@ -687,6 +791,41 @@ public final class CanDropoutDiagnostics {
         int busOffDelta() { return firstBusOff < 0 ? 0 : lastBusOff - firstBusOff; }
         int phxTxFullDelta() { return phxFirstTxFull < 0 ? 0 : phxLastTxFull - phxFirstTxFull; }
         int phxBusOffDelta() { return phxFirstBusOff < 0 ? 0 : phxLastBusOff - phxFirstBusOff; }
+    }
+
+    /** Times robotPeriodic() sections; the previous loop is evaluated at the start of the next one. */
+    private static final class LoopTimer {
+        private final List<java.lang.management.GarbageCollectorMXBean> gcs =
+                java.lang.management.ManagementFactory.getGarbageCollectorMXBeans();
+        private final Map<String, Double> sections = new LinkedHashMap<>();
+        private long loopStart = 0, lastLap = 0;
+        private long gcPrev = -1;
+
+        void begin(CanDropoutDiagnostics diag) {
+            long now = System.nanoTime();
+            long gc = 0;
+            for (var b : gcs) gc += Math.max(0, b.getCollectionTime());
+            if (loopStart != 0) {
+                double dt = (now - loopStart) / 1e9;
+                double inside = (lastLap - loopStart) / 1e6;
+                double outside = (now - lastLap) / 1e6;
+                diag.slowLoop(dt, new LinkedHashMap<>(sections), outside, gcPrev < 0 ? 0 : gc - gcPrev);
+                Logger.recordOutput("CanDiag/Loop/RobotPeriodicMs", inside);
+                Logger.recordOutput("CanDiag/Loop/OutsideMs", outside);
+                sections.forEach((k, v) -> Logger.recordOutput("CanDiag/Loop/Section/" + k, v));
+            }
+            gcPrev = gc;
+            sections.clear();
+            loopStart = now;
+            lastLap = now;
+        }
+
+        void lap(String name) {
+            if (loopStart == 0) return;
+            long now = System.nanoTime();
+            sections.merge(name, (now - lastLap) / 1e6, Double::sum);
+            lastLap = now;
+        }
     }
 
     /** Writes on a background thread so file I/O never stalls the robot loop. */

@@ -101,7 +101,7 @@ public class Robot extends LoggedRobot {
         frc.robot.power.PowerTelemetry.declare("rio", Constants.CANBus.SHOOTER_MOTOR_1, "Shooter Motor1", "Shooter");
         frc.robot.power.PowerTelemetry.declare("rio", Constants.CANBus.SHOOTER_MOTOR_2, "Shooter Motor2", "Shooter");
         frc.robot.power.PowerTelemetry.declare("rio", Constants.CANBus.SHOOTER_MOTOR_3, "Shooter Motor3", "Shooter");
-        frc.robot.power.PowerTelemetry.initialize();
+        if (!FeatureSwitches.DISABLE_POWER_TELEMETRY) frc.robot.power.PowerTelemetry.initialize();
 
         if (FeatureSwitches.CAN_DROPOUT_DIAGNOSTICS && System.getenv("AKIT_LOG_PATH") == null) {
             m_canDiagnostics = createCanDiagnostics(modules);
@@ -135,6 +135,7 @@ public class Robot extends LoggedRobot {
         devices.add(new CanDropoutDiagnostics.Device("shooter 3", "TalonFX", Constants.CANBus.SHOOTER_MOTOR_3));
 
         Map<String, String> config = new LinkedHashMap<>();
+        config.put("DISABLE_POWER_TELEMETRY", String.valueOf(FeatureSwitches.DISABLE_POWER_TELEMETRY));
         config.put("SKIP_SWERVE_POWER_TELEMETRY", String.valueOf(FeatureSwitches.SKIP_SWERVE_POWER_TELEMETRY));
         config.put("DISABLE_INTAKE", String.valueOf(FeatureSwitches.DISABLE_INTAKE));
         config.put("DISABLE_INDEXER", String.valueOf(FeatureSwitches.DISABLE_INDEXER));
@@ -161,18 +162,25 @@ public class Robot extends LoggedRobot {
 
     @Override
     public void robotPeriodic() {
+        var d = m_canDiagnostics;
+        if (d != null) d.beginLoop();
         m_timeAndJoystickReplay.update();
         m_robotContainer.correctOdometry();
+        if (d != null) d.lap("hootReplay+odometry");
         CommandScheduler.getInstance().run();
-        frc.robot.power.PowerTelemetry.periodic();
+        if (d != null) d.lap("scheduler");
+        if (!FeatureSwitches.DISABLE_POWER_TELEMETRY) frc.robot.power.PowerTelemetry.periodic();
+        if (d != null) d.lap("powerTelemetry");
         RobotContainer.updateNT();
         RobotContainer.publishRobotData();
+        if (d != null) d.lap("nt+robotData");
         m_robotContainer.drivetrain.publishDriveOutputVoltage();
         m_robotContainer.drivetrain.publishMotorCurrent();
         m_robotContainer.drivetrain.publishDrivePidErrors();
         m_robotContainer.drivetrain.publishDistanceToHub();
         m_robotContainer.intake.publishMotorCurrents();
-        if (m_canDiagnostics != null) m_canDiagnostics.periodic();
+        if (d != null) d.lap("dashboardPublish");
+        if (d != null) d.periodic();
     }
 
     @Override

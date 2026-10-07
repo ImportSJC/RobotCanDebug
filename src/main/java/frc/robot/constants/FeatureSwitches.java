@@ -29,6 +29,9 @@ public class FeatureSwitches {
     public static final boolean CAN_DROPOUT_DIAGNOSTICS = true;
     /** Bus-load A/B test: true skips PowerTelemetry on the 8 swerve motors, which raises ~14 of their signals to 50 Hz. */
     public static final boolean SKIP_SWERVE_POWER_TELEMETRY = false;
+    /** Bus-load A/B test: true skips PowerTelemetry entirely (no 50 Hz signal boost on any Talon).
+     *  Raised rates live in the device until it reboots, so power-cycle the robot after flipping this. */
+    public static final boolean DISABLE_POWER_TELEMETRY = false;
 
     // -------------------------------------------------------------------------
     // Vision A/B Test Switches (all OFF by default - baseline is 2026 behavior)

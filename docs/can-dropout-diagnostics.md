@@ -60,7 +60,13 @@ In SmartDashboard or Elastic, type text into `CanDiag/Note` (for example `wiggli
 3. Enable and drive and steer for 15 s, then disable.
 4. Enable, and add a note before wiggling each item for about 5 s: each CANcoder's connector, the mini power
    module's terminals, and the module's feed wire. Then disable.
-5. Bus-load A/B test: set `SKIP_SWERVE_POWER_TELEMETRY = true`, redeploy, and repeat steps 2–3.
+5. Bus-load A/B test: set `DISABLE_POWER_TELEMETRY = true`, redeploy, **power-cycle the robot** (raised
+   signal rates stay in each device until it reboots), and repeat steps 2–3. Compare Phoenix bus utilization,
+   `SLOW LOOP` lines and steer `RemoteSensorDataInvalid` faults against the first run.
+
+Frame gaps are measured on a separate 5 ms sampler thread, so a slow robot loop doesn't inflate them. Each loop
+over 40 ms writes a `SLOW LOOP` line that breaks the time down by `robotPeriodic()` section, time spent outside
+`robotPeriodic` (AdvantageKit logging and WPILib) and garbage collection.
 
 ## Pulling the log
 
