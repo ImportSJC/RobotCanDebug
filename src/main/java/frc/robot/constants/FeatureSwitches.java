@@ -31,7 +31,7 @@ public class FeatureSwitches {
     public static final boolean SKIP_SWERVE_POWER_TELEMETRY = false;
     /** Bus-load A/B test: true skips PowerTelemetry entirely (no 50 Hz signal boost on any Talon).
      *  Raised rates live in the device until it reboots, so power-cycle the robot after flipping this. */
-    public static final boolean DISABLE_POWER_TELEMETRY = false;
+    public static final boolean DISABLE_POWER_TELEMETRY = true;
 
     // -------------------------------------------------------------------------
     // Vision A/B Test Switches (all OFF by default - baseline is 2026 behavior)

@@ -1679,3 +1679,201 @@ hints:
 [t=98.830 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
 [t=102.564 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=99% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=121ms V=12.50 E32 ok maxGap=120ms V=12.50 E34 ok maxGap=133ms V=12.50 E33 ok maxGap=121ms V=12.50
 [t=103.501 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=103.878 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=107.583 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=119ms V=12.50 E32 ok maxGap=122ms V=12.50 E34 ok maxGap=160ms V=12.50 E33 ok maxGap=170ms V=12.50
+[t=107.993 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=108.317 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=112.584 disabled] status util=94% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=97% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=116ms V=12.50 E32 ok maxGap=110ms V=12.50 E34 ok maxGap=131ms V=12.45 E33 ok maxGap=103ms V=12.50
+[t=117.608 disabled] status util=77% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=86% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=101ms V=12.50 E32 ok maxGap=101ms V=12.50 E34 ok maxGap=107ms V=12.50 E33 ok maxGap=106ms V=12.50
+[t=122.652 disabled] status util=93% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=105ms V=12.50 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=112ms V=12.50 E33 ok maxGap=105ms V=12.50
+[t=125.523 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=125.805 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=126.013 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=127.073 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=127.652 disabled] status util=91% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=141ms V=12.50 E32 ok maxGap=132ms V=12.50 E34 ok maxGap=133ms V=12.50 E33 ok maxGap=138ms V=12.50
+[t=128.033 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=128.330 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=132.279 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=132.575 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=132.689 disabled] status util=91% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=120ms V=12.50 E32 ok maxGap=130ms V=12.50 E34 ok maxGap=126ms V=12.50 E33 ok maxGap=120ms V=12.50
+[t=137.710 disabled] status util=96% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=91% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=109ms V=12.50 E32 ok maxGap=109ms V=12.50 E34 ok maxGap=110ms V=12.50 E33 ok maxGap=116ms V=12.50
+[t=140.499 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=141.026 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=141.782 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=142.045 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=142.721 disabled] status util=93% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=96% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=111ms V=12.50 E32 ok maxGap=108ms V=12.50 E34 ok maxGap=130ms V=12.50 E33 ok maxGap=120ms V=12.50
+[t=143.600 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=143.949 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=147.753 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=99% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=110ms V=12.50 E32 ok maxGap=119ms V=12.50 E34 ok maxGap=119ms V=12.50 E33 ok maxGap=119ms V=12.50
+[t=149.268 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=149.595 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=152.788 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=110ms V=12.50 E32 ok maxGap=129ms V=12.50 E34 ok maxGap=129ms V=12.50 E33 ok maxGap=130ms V=12.50
+[t=153.281 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=153.589 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=154.782 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=155.071 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=156.769 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=157.065 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=157.818 disabled] status util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=110ms V=12.50 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=110ms V=12.50 E33 ok maxGap=103ms V=12.50
+[t=159.520 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=159.742 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=160.781 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=161.068 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=162.841 disabled] status util=96% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=103ms V=12.50 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=121ms V=12.50 E33 ok maxGap=107ms V=12.50
+[t=167.254 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=167.620 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=167.877 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=99% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=139ms V=12.50 E32 ok maxGap=141ms V=12.50 E34 ok maxGap=140ms V=12.50 E33 ok maxGap=140ms V=12.50
+[t=171.258 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=171.789 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=172.273 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=172.566 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=172.886 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=97% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=101ms V=12.50 E32 ok maxGap=111ms V=12.50 E34 ok maxGap=111ms V=12.50 E33 ok maxGap=108ms V=12.50
+[t=177.902 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=99ms V=12.50 E32 ok maxGap=101ms V=12.50 E34 ok maxGap=109ms V=12.50 E33 ok maxGap=100ms V=12.50
+[t=182.930 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=89% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=110ms V=12.50 E32 ok maxGap=101ms V=12.50 E34 ok maxGap=101ms V=12.50 E33 ok maxGap=110ms V=12.50
+[t=185.247 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=186.583 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=187.285 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=187.600 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=187.951 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=91% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=149ms V=12.50 E32 ok maxGap=149ms V=12.50 E34 ok maxGap=150ms V=12.45 E33 ok maxGap=154ms V=12.50
+[t=188.505 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=188.803 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=192.960 disabled] status util=92% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=92% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=108ms V=12.50 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=103ms V=12.50 E33 ok maxGap=104ms V=12.50
+[t=198.024 disabled] status util=16% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=99% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=108ms V=12.50 E32 ok maxGap=101ms V=12.50 E34 ok maxGap=101ms V=12.50 E33 ok maxGap=104ms V=12.50
+[t=201.277 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=201.614 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=203.026 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=130ms V=12.50 E32 ok maxGap=130ms V=12.50 E34 ok maxGap=128ms V=12.50 E33 ok maxGap=120ms V=12.50
+[t=207.258 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=207.563 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=207.786 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=208.079 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=98% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=93ms V=12.50 E32 ok maxGap=92ms V=12.50 E34 ok maxGap=99ms V=12.50 E33 ok maxGap=94ms V=12.50
+[t=208.286 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=208.523 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=209.034 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=213.112 disabled] status util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=96% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=110ms V=12.50 E32 ok maxGap=110ms V=12.50 E34 ok maxGap=103ms V=12.50 E33 ok maxGap=110ms V=12.50
+[t=214.023 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=214.355 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=218.135 disabled] status util=97% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=90ms V=12.50 E32 ok maxGap=101ms V=12.50 E34 ok maxGap=100ms V=12.45 E33 ok maxGap=106ms V=12.50
+[t=223.151 disabled] status util=93% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=99% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=115ms V=12.50 E32 ok maxGap=99ms V=12.50 E34 ok maxGap=110ms V=12.50 E33 ok maxGap=101ms V=12.50
+[t=227.525 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=227.856 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=228.175 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=122ms V=12.50 E32 ok maxGap=117ms V=12.50 E34 ok maxGap=117ms V=12.50 E33 ok maxGap=108ms V=12.50
+[t=233.211 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=97% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=133ms V=12.50 E32 ok maxGap=132ms V=12.50 E34 ok maxGap=132ms V=12.50 E33 ok maxGap=131ms V=12.50
+[t=236.522 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=236.903 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=238.226 disabled] status util=92% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=121ms V=12.50 E32 ok maxGap=120ms V=12.50 E34 ok maxGap=121ms V=12.50 E33 ok maxGap=120ms V=12.50
+[t=243.237 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=88% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=109ms V=12.50 E32 ok maxGap=102ms V=12.50 E34 ok maxGap=102ms V=12.50 E33 ok maxGap=109ms V=12.50
+[t=244.527 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=244.811 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=245.274 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=245.546 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=247.013 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=247.359 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=248.258 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=140ms V=12.50 E32 ok maxGap=139ms V=12.50 E34 ok maxGap=142ms V=12.45 E33 ok maxGap=141ms V=12.50
+[t=252.280 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=252.539 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=252.775 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=253.291 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=253.291 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=88ms V=12.50 E32 ok maxGap=89ms V=12.50 E34 ok maxGap=101ms V=12.50 E33 ok maxGap=97ms V=12.50
+[t=253.525 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=254.244 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=258.375 disabled] status util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=100ms V=12.45 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=103ms V=12.45 E33 ok maxGap=113ms V=12.50
+[t=259.615 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=259.903 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=262.034 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=262.329 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=263.405 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=91% REC=0 TEC=0 txFull=6) pdh=12.57V/0A | E31 ok maxGap=99ms V=12.50 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=100ms V=12.50 E33 ok maxGap=105ms V=12.50
+[t=264.030 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=264.287 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=267.517 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=267.810 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=268.268 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=268.430 disabled] status util=89% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=129ms V=12.50 E32 ok maxGap=122ms V=12.50 E34 ok maxGap=120ms V=12.50 E33 ok maxGap=122ms V=12.50
+[t=268.846 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=273.446 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=92% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=140ms V=12.50 E32 ok maxGap=131ms V=12.50 E34 ok maxGap=131ms V=12.45 E33 ok maxGap=140ms V=12.50
+[t=278.461 disabled] status util=93% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=90% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=130ms V=12.45 E32 ok maxGap=102ms V=12.50 E34 ok maxGap=124ms V=12.45 E33 ok maxGap=101ms V=12.50
+[t=278.784 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=279.093 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=281.283 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=281.611 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=283.471 disabled] status util=92% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=111ms V=12.50 E32 ok maxGap=107ms V=12.50 E34 ok maxGap=119ms V=12.50 E33 ok maxGap=125ms V=12.50
+[t=284.625 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=284.921 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=288.291 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=288.490 disabled] status util=94% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=140ms V=12.45 E32 ok maxGap=130ms V=12.50 E34 ok maxGap=131ms V=12.45 E33 ok maxGap=130ms V=12.50
+[t=288.633 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=293.521 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=90ms V=12.50 E32 ok maxGap=112ms V=12.50 E34 ok maxGap=110ms V=12.50 E33 ok maxGap=98ms V=12.50
+[t=295.269 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=295.563 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=296.014 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=296.545 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=298.500 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=298.636 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=97% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=140ms V=12.50 E32 ok maxGap=139ms V=12.50 E34 ok maxGap=160ms V=12.50 E33 ok maxGap=141ms V=12.50
+[t=298.876 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=302.785 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=303.108 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=303.639 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=88ms V=12.50 E32 ok maxGap=108ms V=12.50 E34 ok maxGap=99ms V=12.45 E33 ok maxGap=91ms V=12.50
+[t=308.539 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=308.668 disabled] status util=95% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=90ms V=12.50 E32 ok maxGap=98ms V=12.50 E34 ok maxGap=91ms V=12.50 E33 ok maxGap=102ms V=12.50
+[t=308.797 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=312.523 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=312.806 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=313.530 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=313.711 disabled] status util=90% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=107ms V=12.45 E32 ok maxGap=119ms V=12.50 E34 ok maxGap=101ms V=12.45 E33 ok maxGap=108ms V=12.50
+[t=313.884 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=317.787 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=318.078 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=318.788 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=92% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=99ms V=12.50 E32 ok maxGap=110ms V=12.50 E34 ok maxGap=108ms V=12.50 E33 ok maxGap=101ms V=12.50
+[t=321.295 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=321.566 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=322.024 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=322.286 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=323.278 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=323.831 disabled] status util=85% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=95ms V=12.50 E32 ok maxGap=92ms V=12.50 E34 ok maxGap=111ms V=12.50 E33 ok maxGap=102ms V=12.50
+[t=324.859 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=327.765 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=328.149 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=328.869 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=97% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=100ms V=12.50 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=118ms V=12.50 E33 ok maxGap=121ms V=12.50
+[t=330.281 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=330.586 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=333.892 disabled] status util=96% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=100ms V=12.50 E32 ok maxGap=108ms V=12.50 E34 ok maxGap=151ms V=12.50 E33 ok maxGap=110ms V=12.50
+[t=338.916 disabled] status util=91% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[P60,M25,M45,M37] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=100ms V=12.50 E32 ok maxGap=107ms V=12.50 E34 ok maxGap=108ms V=12.45 E33 ok maxGap=111ms V=12.50
+[t=342.517 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=343.292 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=343.791 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=343.948 disabled] status util=90% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=96% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=90ms V=12.50 E32 ok maxGap=92ms V=12.50 E34 ok maxGap=100ms V=12.45 E33 ok maxGap=90ms V=12.50
+[t=344.093 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=348.955 disabled] status util=91% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=141ms V=12.50 E32 ok maxGap=138ms V=12.50 E34 ok maxGap=141ms V=12.50 E33 ok maxGap=140ms V=12.50
+[t=349.286 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=349.567 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=349.792 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=350.050 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=351.030 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=351.329 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=351.553 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=352.236 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=353.974 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=114ms V=12.50 E32 ok maxGap=112ms V=12.50 E34 ok maxGap=110ms V=12.45 E33 ok maxGap=113ms V=12.50
+[t=355.771 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=356.044 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=356.516 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=357.767 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=358.024 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=358.279 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=358.533 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=358.804 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=359.010 disabled] status util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=90% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=92ms V=12.50 E32 ok maxGap=90ms V=12.50 E34 ok maxGap=108ms V=12.50 E33 ok maxGap=112ms V=12.50
+[t=359.777 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=360.086 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=361.788 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=362.122 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=364.042 disabled] status util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=99% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=121ms V=12.50 E32 ok maxGap=119ms V=12.50 E34 ok maxGap=119ms V=12.50 E33 ok maxGap=120ms V=12.50
+[t=368.512 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=368.828 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=369.047 disabled] status util=92% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=136ms V=12.50 E32 ok maxGap=109ms V=12.50 E34 ok maxGap=110ms V=12.45 E33 ok maxGap=101ms V=12.50
+[t=369.536 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=369.833 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=374.090 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=88ms V=12.50 E32 ok maxGap=100ms V=12.50 E34 ok maxGap=104ms V=12.45 E33 ok maxGap=111ms V=12.50
+[t=374.280 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=374.553 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=376.505 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=376.829 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=379.126 disabled] status util=95% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[P60,M25,M45,M37] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=249ms V=12.45 E32 ok maxGap=251ms V=12.50 E34 ok maxGap=251ms V=12.45 E33 ok maxGap=251ms V=12.50

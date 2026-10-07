@@ -1,0 +1,711 @@
+==== CAN DROPOUT DIAGNOSTICS ====
+wall clock: 2026-10-07 02:42:39 (roboRIO clock; may read 1970 until the DS connects)
+bus: '' (roboRIO built-in CAN 2.0)  isNetworkFD=false
+stale threshold 200ms, gap warning 60ms
+config DISABLE_POWER_TELEMETRY = false
+config SKIP_SWERVE_POWER_TELEMETRY = false
+config DISABLE_INTAKE = false
+config DISABLE_INDEXER = true
+config DISABLE_HOPPER = true
+config odometryFrequencyHz = 100
+PDH/PDP: type=kRev module=0 channels=24
+---- boot snapshot (sticky faults from BEFORE this code started) ----
+CANcoder 31 (FL encoder): present, fw=26.1.0.0, Vsupply=12.50, magnet=Magnet_Green, sticky=none
+CANcoder 32 (FR encoder): present, fw=26.1.0.0, Vsupply=12.50, magnet=Magnet_Green, sticky=none
+CANcoder 34 (BL encoder): present, fw=26.1.0.0, Vsupply=12.45, magnet=Magnet_Green, sticky=none
+CANcoder 33 (BR encoder): present, fw=26.1.0.0, Vsupply=12.50, magnet=Magnet_Green, sticky=none
+TalonFX 21 (FL steer): present, fw=26.3.0.0, Vsupply=12.50, sticky=RemoteSensorDataInvalid
+TalonFX 1 (FL drive): present, fw=26.3.0.0, Vsupply=12.58, sticky=none
+TalonFX 22 (FR steer): present, fw=26.3.0.0, Vsupply=12.48, sticky=RemoteSensorDataInvalid
+TalonFX 2 (FR drive): present, fw=26.3.0.0, Vsupply=12.48, sticky=none
+TalonFX 24 (BL steer): present, fw=26.3.0.0, Vsupply=12.43, sticky=RemoteSensorDataInvalid
+TalonFX 4 (BL drive): present, fw=26.3.0.0, Vsupply=12.35, sticky=none
+TalonFX 23 (BR steer): present, fw=26.3.0.0, Vsupply=12.35, sticky=RemoteSensorDataInvalid
+TalonFX 3 (BR drive): present, fw=26.3.0.0, Vsupply=12.30, sticky=none
+Pigeon2 60 (gyro): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 28 (intake deploy): present, fw=26.1.1.1, Vsupply=12.08, sticky=none
+TalonFX 29 (pickup): present, fw=26.3.0.0, Vsupply=12.18, sticky=none
+TalonFX 25 (hopper): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 40 (indexer): present, fw=26.3.0.0, Vsupply=12.10, sticky=none
+TalonFX 45 (climber): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 37 (climber grabber): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 41 (shooter 1): present, fw=26.3.0.0, Vsupply=12.40, sticky=none
+TalonFX 42 (shooter 2): present, fw=26.3.0.0, Vsupply=12.38, sticky=none
+TalonFX 43 (shooter 3): present, fw=26.3.0.0, Vsupply=12.40, sticky=none
+PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15
+sticky faults cleared on all devices; from here on a STICKY event means it happened this run.
+frame gaps are measured by a separate 5ms sampler thread, independent of robot loop timing.
+Type text into SmartDashboard 'CanDiag/Note' or toggle 'CanDiag/Mark' to stamp the log (e.g. 'wiggling FL encoder plug').
+
+[t=18.956 disabled] GAP CANcoder 31 (FL encoder) 157ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP CANcoder 32 (FR encoder) 160ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 34 (BL encoder) 149ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 33 (BR encoder) 156ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP TalonFX 21 (FL steer) 161ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP TalonFX 1 (FL drive) 156ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 22 (FR steer) 156ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP TalonFX 2 (FR drive) 154ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 24 (BL steer) 149ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP TalonFX 4 (BL drive) 155ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 23 (BR steer) 154ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 3 (BR drive) 155ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=18.956 disabled] GAP TalonFX 28 (intake deploy) 161ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP TalonFX 29 (pickup) 159ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 40 (indexer) 159ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 41 (shooter 1) 156ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 42 (shooter 2) 160ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP TalonFX 43 (shooter 3) 161ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 32 (FR encoder) 65ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=18.956 disabled] GAP CANcoder 34 (BL encoder) 62ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 33 (BR encoder) 68ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 34 (BL encoder) 62ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 33 (BR encoder) 63ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 31 (FL encoder) 80ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 32 (FR encoder) 80ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 34 (BL encoder) 92ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP CANcoder 33 (BR encoder) 93ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=18.956 disabled] GAP TalonFX 42 (shooter 2) 60ms between frames (not a full dropout)  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=18.956 disabled] ABSENT Pigeon2 60 (gyro) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=18.956 disabled] ABSENT TalonFX 25 (hopper) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=18.956 disabled] ABSENT TalonFX 45 (climber) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=18.956 disabled] ABSENT TalonFX 37 (climber grabber) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=18.956 disabled] status util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.52V/0A | E31 ok maxGap=157ms V=12.45 E32 ok maxGap=160ms V=12.50 E34 ok maxGap=149ms V=12.45 E33 ok maxGap=156ms V=12.45 | absent: P60 M25 M45 M37
+[t=19.183] SLOW LOOP dt=1195ms: hootReplay+odometry=35 scheduler=608 powerTelemetry=168 nt+robotData=11 dashboardPublish=158 candiag=167 outsideRobotPeriodic=47 gc=51 (ms)
+[t=19.383 disabled] GAP CANcoder 34 (BL encoder) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=19.383 disabled] GAP CANcoder 33 (BR encoder) 60ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=19.455] SLOW LOOP dt=284ms: hootReplay+odometry=37 scheduler=62 powerTelemetry=102 nt+robotData=6 dashboardPublish=6 candiag=33 outsideRobotPeriodic=38 gc=0 (ms)
+[t=19.920] SLOW LOOP dt=465ms: hootReplay+odometry=5 scheduler=167 powerTelemetry=159 nt+robotData=3 dashboardPublish=10 candiag=44 outsideRobotPeriodic=77 gc=0 (ms)
+[t=20.395] SLOW LOOP dt=476ms: hootReplay+odometry=15 scheduler=117 powerTelemetry=168 nt+robotData=4 dashboardPublish=4 candiag=46 outsideRobotPeriodic=122 gc=0 (ms)
+[t=20.805] SLOW LOOP dt=410ms: hootReplay+odometry=20 scheduler=37 powerTelemetry=120 dashboardPublish=7 candiag=109 outsideRobotPeriodic=117 gc=52 (ms)
+[t=21.096 disabled] GAP CANcoder 31 (FL encoder) 69ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=21.096 disabled] GAP CANcoder 32 (FR encoder) 70ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=21.096 disabled] GAP CANcoder 34 (BL encoder) 70ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=21.096 disabled] GAP CANcoder 33 (BR encoder) 67ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=21.096 disabled] GAP TalonFX 21 (FL steer) 72ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=21.096 disabled] GAP TalonFX 1 (FL drive) 69ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=21.096 disabled] GAP TalonFX 22 (FR steer) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=21.096 disabled] GAP TalonFX 24 (BL steer) 70ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=21.096 disabled] GAP TalonFX 4 (BL drive) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=21.096 disabled] GAP TalonFX 23 (BR steer) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=21.096 disabled] GAP TalonFX 3 (BR drive) 72ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=21.096 disabled] GAP TalonFX 28 (intake deploy) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=21.096 disabled] GAP TalonFX 29 (pickup) 60ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=21.096 disabled] GAP TalonFX 40 (indexer) 78ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=21.096 disabled] GAP TalonFX 41 (shooter 1) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=21.096 disabled] GAP TalonFX 43 (shooter 3) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=21.096 disabled] GAP TalonFX 40 (indexer) 60ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=21.244] SLOW LOOP dt=440ms: hootReplay+odometry=14 scheduler=161 powerTelemetry=107 nt+robotData=3 dashboardPublish=6 candiag=95 outsideRobotPeriodic=53 gc=0 (ms)
+[t=21.619] SLOW LOOP dt=375ms: hootReplay+odometry=14 scheduler=91 powerTelemetry=128 dashboardPublish=9 candiag=53 outsideRobotPeriodic=80 gc=0 (ms)
+[t=21.993] SLOW LOOP dt=374ms: hootReplay+odometry=32 scheduler=105 powerTelemetry=144 nt+robotData=1 dashboardPublish=10 candiag=48 outsideRobotPeriodic=33 gc=0 (ms)
+[t=22.294] SLOW LOOP dt=301ms: hootReplay+odometry=20 scheduler=74 powerTelemetry=121 dashboardPublish=11 candiag=32 outsideRobotPeriodic=44 gc=0 (ms)
+[t=22.363 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=22.398] SLOW LOOP dt=104ms: hootReplay+odometry=14 scheduler=19 powerTelemetry=32 dashboardPublish=3 candiag=17 outsideRobotPeriodic=18 gc=0 (ms)
+[t=22.551] SLOW LOOP dt=150ms: hootReplay+odometry=5 scheduler=21 powerTelemetry=64 dashboardPublish=2 candiag=10 outsideRobotPeriodic=47 gc=16 (ms)
+[t=22.608 disabled] GAP CANcoder 32 (FR encoder) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=22.653] SLOW LOOP dt=105ms: hootReplay+odometry=16 scheduler=13 powerTelemetry=28 dashboardPublish=3 candiag=14 outsideRobotPeriodic=31 gc=0 (ms)
+[t=22.813] SLOW LOOP dt=161ms: hootReplay+odometry=9 scheduler=52 powerTelemetry=59 dashboardPublish=2 candiag=21 outsideRobotPeriodic=17 gc=0 (ms)
+[t=23.007] SLOW LOOP dt=194ms: hootReplay+odometry=10 scheduler=30 powerTelemetry=53 dashboardPublish=1 candiag=19 outsideRobotPeriodic=80 gc=0 (ms)
+[t=23.271 disabled] FAULT cleared TalonFX 28 (intake deploy) Hardware  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=23.408] SLOW LOOP dt=401ms: hootReplay+odometry=29 scheduler=117 powerTelemetry=113 dashboardPublish=4 candiag=43 outsideRobotPeriodic=94 gc=0 (ms)
+[t=23.609] SLOW LOOP dt=201ms: hootReplay+odometry=19 scheduler=42 powerTelemetry=104 dashboardPublish=3 candiag=15 outsideRobotPeriodic=18 gc=0 (ms)
+[t=23.793] SLOW LOOP dt=184ms: hootReplay+odometry=22 scheduler=51 powerTelemetry=63 dashboardPublish=2 candiag=15 outsideRobotPeriodic=30 gc=12 (ms)
+[t=23.944] SLOW LOOP dt=152ms: hootReplay+odometry=26 scheduler=26 powerTelemetry=64 nt+robotData=2 dashboardPublish=2 candiag=11 outsideRobotPeriodic=22 gc=0 (ms)
+[t=24.042 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=87% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=69ms V=12.45 E32 ok maxGap=70ms V=12.50 E34 ok maxGap=70ms V=12.45 E33 ok maxGap=67ms V=12.50 | absent: P60 M25 M45 M37
+[t=24.096] SLOW LOOP dt=151ms: hootReplay+odometry=7 scheduler=34 powerTelemetry=52 dashboardPublish=4 candiag=38 outsideRobotPeriodic=16 gc=0 (ms)
+[t=24.325] SLOW LOOP dt=229ms: hootReplay+odometry=5 scheduler=57 powerTelemetry=95 dashboardPublish=3 candiag=48 outsideRobotPeriodic=20 gc=0 (ms)
+[t=24.441 disabled] GAP CANcoder 33 (BR encoder) 60ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=24.490] SLOW LOOP dt=166ms: hootReplay+odometry=14 scheduler=39 powerTelemetry=56 dashboardPublish=8 candiag=23 outsideRobotPeriodic=26 gc=0 (ms)
+[t=24.575] SLOW LOOP dt=85ms: hootReplay+odometry=8 scheduler=17 powerTelemetry=34 nt+robotData=2 dashboardPublish=1 candiag=10 outsideRobotPeriodic=14 gc=0 (ms)
+[t=24.716] SLOW LOOP dt=141ms: hootReplay+odometry=4 scheduler=35 powerTelemetry=61 dashboardPublish=2 candiag=14 outsideRobotPeriodic=23 gc=0 (ms)
+[t=24.941] SLOW LOOP dt=226ms: hootReplay+odometry=12 scheduler=58 powerTelemetry=54 dashboardPublish=3 candiag=11 outsideRobotPeriodic=87 gc=15 (ms)
+[t=25.082 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=25.182] SLOW LOOP dt=240ms: hootReplay+odometry=14 scheduler=60 powerTelemetry=64 dashboardPublish=3 candiag=58 outsideRobotPeriodic=41 gc=0 (ms)
+[t=25.348 disabled] GAP CANcoder 33 (BR encoder) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=25.390] SLOW LOOP dt=208ms: hootReplay+odometry=16 scheduler=67 powerTelemetry=80 dashboardPublish=4 candiag=23 outsideRobotPeriodic=19 gc=0 (ms)
+[t=25.474] SLOW LOOP dt=84ms: hootReplay+odometry=9 scheduler=19 powerTelemetry=35 dashboardPublish=2 candiag=6 outsideRobotPeriodic=13 gc=0 (ms)
+[t=25.602] SLOW LOOP dt=129ms: hootReplay+odometry=4 scheduler=31 powerTelemetry=40 dashboardPublish=7 candiag=21 outsideRobotPeriodic=25 gc=0 (ms)
+[t=25.682] SLOW LOOP dt=79ms: hootReplay+odometry=13 scheduler=19 powerTelemetry=25 dashboardPublish=1 candiag=11 outsideRobotPeriodic=9 gc=0 (ms)
+[t=25.772 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=25.842] SLOW LOOP dt=160ms: hootReplay+odometry=11 scheduler=26 powerTelemetry=51 dashboardPublish=3 candiag=39 outsideRobotPeriodic=31 gc=10 (ms)
+[t=25.933] SLOW LOOP dt=91ms: hootReplay+odometry=7 scheduler=16 powerTelemetry=32 dashboardPublish=2 candiag=7 outsideRobotPeriodic=27 gc=0 (ms)
+[t=26.100] SLOW LOOP dt=166ms: hootReplay+odometry=4 scheduler=39 powerTelemetry=74 dashboardPublish=1 candiag=21 outsideRobotPeriodic=25 gc=0 (ms)
+[t=26.188] SLOW LOOP dt=89ms: hootReplay+odometry=12 scheduler=17 powerTelemetry=39 dashboardPublish=3 candiag=6 outsideRobotPeriodic=11 gc=0 (ms)
+[t=26.320] SLOW LOOP dt=133ms: hootReplay+odometry=5 scheduler=13 powerTelemetry=72 dashboardPublish=3 candiag=12 outsideRobotPeriodic=27 gc=0 (ms)
+[t=26.495] SLOW LOOP dt=174ms: hootReplay+odometry=16 scheduler=43 powerTelemetry=49 nt+robotData=2 dashboardPublish=8 candiag=21 outsideRobotPeriodic=35 gc=0 (ms)
+[t=26.623] SLOW LOOP dt=125ms: hootReplay+odometry=9 scheduler=23 powerTelemetry=53 dashboardPublish=2 candiag=13 outsideRobotPeriodic=25 gc=0 (ms)
+[t=26.701] SLOW LOOP dt=82ms: hootReplay+odometry=12 scheduler=12 powerTelemetry=31 nt+robotData=9 dashboardPublish=1 candiag=6 outsideRobotPeriodic=10 gc=7 (ms)
+[t=26.858] SLOW LOOP dt=157ms: hootReplay+odometry=6 scheduler=47 powerTelemetry=53 dashboardPublish=6 candiag=14 outsideRobotPeriodic=31 gc=0 (ms)
+[t=26.918 disabled] GAP CANcoder 33 (BR encoder) 64ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=26.978] SLOW LOOP dt=120ms: hootReplay+odometry=9 scheduler=16 powerTelemetry=33 dashboardPublish=2 candiag=12 outsideRobotPeriodic=48 gc=0 (ms)
+[t=27.078 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=27.178] SLOW LOOP dt=201ms: hootReplay+odometry=11 scheduler=34 powerTelemetry=53 dashboardPublish=2 candiag=53 outsideRobotPeriodic=47 gc=0 (ms)
+[t=27.297 disabled] GAP CANcoder 34 (BL encoder) 83ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=27.317] SLOW LOOP dt=138ms: hootReplay+odometry=24 scheduler=39 powerTelemetry=53 dashboardPublish=3 candiag=9 outsideRobotPeriodic=11 gc=0 (ms)
+[t=27.439] SLOW LOOP dt=122ms: hootReplay+odometry=7 scheduler=39 powerTelemetry=50 dashboardPublish=2 candiag=10 outsideRobotPeriodic=13 gc=0 (ms)
+[t=27.606] SLOW LOOP dt=167ms: hootReplay+odometry=10 scheduler=35 powerTelemetry=66 dashboardPublish=10 candiag=6 outsideRobotPeriodic=40 gc=0 (ms)
+[t=27.693] SLOW LOOP dt=87ms: hootReplay+odometry=13 scheduler=16 powerTelemetry=39 dashboardPublish=4 candiag=6 outsideRobotPeriodic=9 gc=6 (ms)
+[t=27.797 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=27.854] SLOW LOOP dt=161ms: hootReplay+odometry=4 scheduler=37 powerTelemetry=60 dashboardPublish=3 candiag=29 outsideRobotPeriodic=28 gc=0 (ms)
+[t=27.921 disabled] GAP CANcoder 33 (BR encoder) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=27.943] SLOW LOOP dt=89ms: hootReplay+odometry=5 scheduler=19 powerTelemetry=41 dashboardPublish=2 candiag=9 outsideRobotPeriodic=12 gc=0 (ms)
+[t=28.094] SLOW LOOP dt=151ms: hootReplay+odometry=4 scheduler=14 powerTelemetry=53 dashboardPublish=4 candiag=24 outsideRobotPeriodic=50 gc=0 (ms)
+[t=28.197] SLOW LOOP dt=104ms: hootReplay+odometry=8 scheduler=25 powerTelemetry=45 dashboardPublish=4 candiag=10 outsideRobotPeriodic=11 gc=0 (ms)
+[t=28.330] SLOW LOOP dt=132ms: hootReplay+odometry=5 scheduler=34 powerTelemetry=49 dashboardPublish=5 candiag=9 outsideRobotPeriodic=29 gc=0 (ms)
+[t=28.438] SLOW LOOP dt=108ms: hootReplay+odometry=17 scheduler=14 powerTelemetry=29 dashboardPublish=2 candiag=11 outsideRobotPeriodic=34 gc=0 (ms)
+[t=28.733] SLOW LOOP dt=295ms: hootReplay+odometry=5 scheduler=126 powerTelemetry=93 dashboardPublish=7 candiag=29 outsideRobotPeriodic=35 gc=8 (ms)
+[t=28.876] SLOW LOOP dt=143ms: hootReplay+odometry=11 scheduler=43 powerTelemetry=47 dashboardPublish=4 candiag=7 outsideRobotPeriodic=31 gc=0 (ms)
+[t=29.099] SLOW LOOP dt=224ms: hootReplay+odometry=11 scheduler=45 powerTelemetry=105 dashboardPublish=2 candiag=18 outsideRobotPeriodic=43 gc=0 (ms)
+[t=29.230 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=55ms V=12.45 E32 ok maxGap=56ms V=12.50 E34 ok maxGap=83ms V=12.45 E33 ok maxGap=64ms V=12.50 | absent: P60 M25 M45 M37
+[t=29.274] SLOW LOOP dt=175ms: hootReplay+odometry=7 scheduler=49 powerTelemetry=69 dashboardPublish=6 candiag=16 outsideRobotPeriodic=27 gc=0 (ms)
+[t=29.452] SLOW LOOP dt=178ms: hootReplay+odometry=10 scheduler=32 powerTelemetry=64 dashboardPublish=2 candiag=25 outsideRobotPeriodic=43 gc=0 (ms)
+[t=29.555] SLOW LOOP dt=103ms: hootReplay+odometry=14 scheduler=27 powerTelemetry=35 dashboardPublish=4 candiag=5 outsideRobotPeriodic=18 gc=0 (ms)
+[t=29.700] SLOW LOOP dt=145ms: hootReplay+odometry=5 scheduler=11 powerTelemetry=77 dashboardPublish=15 candiag=19 outsideRobotPeriodic=19 gc=10 (ms)
+[t=29.770] SLOW LOOP dt=70ms: hootReplay+odometry=5 scheduler=17 powerTelemetry=33 dashboardPublish=2 candiag=5 outsideRobotPeriodic=8 gc=0 (ms)
+[t=29.969] SLOW LOOP dt=199ms: hootReplay+odometry=4 scheduler=63 powerTelemetry=81 dashboardPublish=3 candiag=27 outsideRobotPeriodic=22 gc=0 (ms)
+[t=30.061 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=30.200] SLOW LOOP dt=231ms: hootReplay+odometry=12 scheduler=27 powerTelemetry=49 dashboardPublish=4 candiag=97 outsideRobotPeriodic=42 gc=0 (ms)
+[t=30.606 disabled] GAP CANcoder 34 (BL encoder) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=30.705 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=32.294 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=32.434 disabled] GAP CANcoder 34 (BL encoder) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=32.848 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=33.536 disabled] GAP TalonFX 29 (pickup) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=33.894 disabled] GAP CANcoder 34 (BL encoder) 68ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=34.281 disabled] status util=90% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=85% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=56ms V=12.50 E32 ok maxGap=51ms V=12.50 E34 ok maxGap=68ms V=12.45 E33 ok maxGap=58ms V=12.50 | absent: P60 M25 M45 M37
+[t=34.405 disabled] GAP CANcoder 33 (BR encoder) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=35.411 disabled] GAP CANcoder 33 (BR encoder) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=36.560 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=37.125 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=37.125 disabled] GAP CANcoder 34 (BL encoder) 61ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=39.386 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=96% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=60ms V=12.50 E32 ok maxGap=60ms V=12.50 E34 ok maxGap=61ms V=12.50 E33 ok maxGap=62ms V=12.50 | absent: P60 M25 M45 M37
+[t=39.927 disabled] GAP CANcoder 34 (BL encoder) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=40.077 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=40.728 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=41.906 disabled] GAP CANcoder 33 (BR encoder) 63ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=42.606 disabled] GAP CANcoder 32 (FR encoder) 65ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=43.070 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=43.858 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=44.160 disabled] GAP CANcoder 33 (BR encoder) 61ms between frames (not a full dropout)  | util=95% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=44.160 disabled] GAP CANcoder 34 (BL encoder) 60ms between frames (not a full dropout)  | util=95% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=44.395 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=49ms V=12.45 E32 ok maxGap=65ms V=12.50 E34 ok maxGap=61ms V=12.50 E33 ok maxGap=63ms V=12.50 | absent: P60 M25 M45 M37
+[t=44.862 disabled] GAP CANcoder 31 (FL encoder) 61ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=45.389 disabled] GAP CANcoder 34 (BL encoder) 64ms between frames (not a full dropout)  | util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=46.648 disabled] GAP CANcoder 34 (BL encoder) 67ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=46.648 disabled] GAP CANcoder 33 (BR encoder) 67ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=47.277 disabled] GAP CANcoder 34 (BL encoder) 60ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=47.826 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=48.305 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=48.653 disabled] GAP CANcoder 34 (BL encoder) 65ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=49.421 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=92% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=61ms V=12.45 E32 ok maxGap=58ms V=12.50 E34 ok maxGap=67ms V=12.50 E33 ok maxGap=67ms V=12.50 | absent: P60 M25 M45 M37
+[t=50.079 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=50.489 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=51.872 disabled] GAP CANcoder 33 (BR encoder) 62ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=52.564 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=52.724 disabled] GAP CANcoder 33 (BR encoder) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=52.724 disabled] GAP CANcoder 34 (BL encoder) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+
+======== ENABLE #1 (teleop) at t=52.874  battery=12.47V ========
+devices already missing at enable: Pigeon2 60 (gyro) TalonFX 25 (hopper) TalonFX 45 (climber) TalonFX 37 (climber grabber)
+high-res lines for first 3.0s: en+t dt | util REC TEC txFull | batt | per-CANcoder msSinceFrame/Vsupply | per-steer supplyA
+[t=52.874 en+0.000s] GAP CANcoder 33 (BR encoder) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+0.000 dt=150ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 96% | batt=12.46 | E31:11/12.5 E32:10/12.5 E34:8/12.5 E33:10/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=52.874 en+0.000s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=96% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=11ms V=12.45 E32 ok maxGap=11ms V=12.50 E34 ok maxGap=11ms V=12.45 E33 ok maxGap=11ms V=12.50 | absent: P60 M25 M45 M37
+[t=52.932] SLOW LOOP dt=140ms: hootReplay+odometry=1 scheduler=31 powerTelemetry=49 dashboardPublish=1 candiag=33 outsideRobotPeriodic=24 gc=0 (ms)
+  hr en+0.185 dt=185ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 94% | batt=12.17 | E31:36/12.5 E32:36/12.5 E34:35/12.5 E33:37/12.5 | M21:0.0A M22:0.0A M24:7.6A M23:0.0A
+[t=53.122] SLOW LOOP dt=191ms: hootReplay+odometry=3 scheduler=94 powerTelemetry=27 nt+robotData=2 dashboardPublish=2 candiag=15 outsideRobotPeriodic=48 gc=8 (ms)
+[t=53.178 en+0.304s] GAP CANcoder 31 (FL encoder) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.05V down=[]
+[t=53.178 en+0.304s] GAP CANcoder 32 (FR encoder) 85ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.02V down=[]
+[t=53.178 en+0.304s] GAP CANcoder 33 (BR encoder) 90ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=11.93V down=[]
+[t=53.178 en+0.304s] GAP CANcoder 34 (BL encoder) 101ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=11.95V down=[]
+  hr en+0.304 dt=119ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.00 | E31:30/12.5 E32:9/12.5 E34:16/12.5 E33:16/12.6 | M21:0.0A M22:0.0A M24:12.3A M23:0.0A
+[t=53.199] SLOW LOOP dt=77ms: hootReplay+odometry=7 scheduler=15 powerTelemetry=33 dashboardPublish=1 candiag=14 outsideRobotPeriodic=7 gc=0 (ms)
+  hr en+0.404 dt=100ms | util= 98% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.44 | E31:8/12.6 E32:8/12.5 E34:14/12.5 E33:13/12.6 | M21:0.0A M22:0.0A M24:0.1A M23:0.0A
+[t=53.354] SLOW LOOP dt=155ms: hootReplay+odometry=2 scheduler=36 powerTelemetry=39 nt+robotData=2 dashboardPublish=1 candiag=40 outsideRobotPeriodic=36 gc=0 (ms)
+[t=53.396 en+0.522s] GAP CANcoder 31 (FL encoder) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=53.396 en+0.522s] GAP CANcoder 32 (FR encoder) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=53.396 en+0.522s] GAP CANcoder 34 (BL encoder) 105ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=53.396 en+0.522s] GAP CANcoder 33 (BR encoder) 104ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+  hr en+0.522 dt=118ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 99% | batt=12.46 | E31:41/12.6 E32:9/12.5 E34:9/12.5 E33:9/12.6 | M21:-0.0A M22:0.0A M24:0.2A M23:0.0A
+[t=53.419] SLOW LOOP dt=65ms: hootReplay+odometry=7 scheduler=9 powerTelemetry=23 dashboardPublish=2 candiag=10 outsideRobotPeriodic=13 gc=0 (ms)
+  hr en+0.609 dt=87ms | util= 99% REC=  0 TEC=  0 txF=6 | phx= 99% | batt=12.44 | E31:9/12.5 E32:8/12.5 E34:7/12.4 E33:9/12.5 | M21:-0.0A M22:0.0A M24:0.3A M23:0.0A
+[t=53.524] SLOW LOOP dt=105ms: hootReplay+odometry=2 scheduler=10 powerTelemetry=49 nt+robotData=2 dashboardPublish=2 candiag=22 outsideRobotPeriodic=19 gc=0 (ms)
+  hr en+0.693 dt=85ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.44 | E31:33/12.5 E32:55/12.5 E34:49/12.4 E33:52/12.5 | M21:0.0A M22:0.0A M24:0.2A M23:0.0A
+[t=53.583] SLOW LOOP dt=58ms: hootReplay+odometry=3 scheduler=11 powerTelemetry=22 dashboardPublish=8 candiag=8 outsideRobotPeriodic=7 gc=0 (ms)
+[t=53.654 en+0.780s] GAP CANcoder 34 (BL encoder) 61ms between frames (not a full dropout)  | util=93% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=53.654 en+0.780s] GAP CANcoder 33 (BR encoder) 61ms between frames (not a full dropout)  | util=93% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=53.654 en+0.780s] GAP CANcoder 31 (FL encoder) 81ms between frames (not a full dropout)  | util=93% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+  hr en+0.780 dt=87ms | util= 93% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.44 | E31:3/12.5 E32:10/12.5 E34:4/12.4 E33:4/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=53.692] SLOW LOOP dt=110ms: hootReplay+odometry=2 scheduler=15 powerTelemetry=50 dashboardPublish=5 candiag=15 outsideRobotPeriodic=23 gc=9 (ms)
+[t=53.731 en+0.857s] PDH faults: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=53.731 en+0.857s] STICKY SET TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=53.731 en+0.857s] STICKY SET TalonFX 23 (BR steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+0.857 dt=77ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.45 | E31:45/12.5 E32:13/12.5 E34:7/12.5 E33:8/12.5 | M21:0.0A M22:0.0A M24:-0.1A M23:0.0A
+[t=53.805] SLOW LOOP dt=113ms: hootReplay+odometry=4 scheduler=15 powerTelemetry=18 dashboardPublish=2 candiag=52 outsideRobotPeriodic=22 gc=0 (ms)
+[t=53.950 en+1.076s] GAP CANcoder 31 (FL encoder) 137ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+  hr en+1.076 dt=219ms | util=100% REC=  0 TEC=  0 txF=6 | phx= 98% | batt=12.46 | E31:21/12.5 E32:9/12.5 E34:22/12.5 E33:10/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=53.950 en+1.076s] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=98% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=137ms V=12.45 E32 ok maxGap=85ms V=12.50 E34 ok maxGap=105ms V=12.45 E33 ok maxGap=104ms V=12.45 | absent: P60 M25 M45 M37
+[t=54.007] SLOW LOOP dt=202ms: hootReplay+odometry=3 scheduler=52 powerTelemetry=77 nt+robotData=2 dashboardPublish=12 candiag=35 outsideRobotPeriodic=22 gc=0 (ms)
+[t=54.124 en+1.250s] GAP CANcoder 34 (BL encoder) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=54.124 en+1.250s] GAP TalonFX 40 (indexer) 67ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+1.250 dt=174ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.46 | E31:119/12.5 E32:107/12.5 E34:14/12.5 E33:15/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.174] SLOW LOOP dt=166ms: hootReplay+odometry=6 scheduler=28 powerTelemetry=71 dashboardPublish=11 candiag=11 outsideRobotPeriodic=39 gc=0 (ms)
+[t=54.214 en+1.340s] GAP CANcoder 31 (FL encoder) 128ms between frames (not a full dropout)  | util=85% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=54.214 en+1.340s] GAP CANcoder 32 (FR encoder) 116ms between frames (not a full dropout)  | util=85% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+1.340 dt=90ms | util= 85% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.47 | E31:27/12.5 E32:22/12.5 E34:22/12.5 E33:24/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.235] SLOW LOOP dt=61ms: hootReplay+odometry=4 scheduler=13 powerTelemetry=22 dashboardPublish=1 candiag=9 outsideRobotPeriodic=12 gc=0 (ms)
+  hr en+1.430 dt=90ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 90% | batt=12.46 | E31:54/12.5 E32:51/12.5 E34:51/12.5 E33:52/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.334] SLOW LOOP dt=98ms: hootReplay+odometry=2 scheduler=10 powerTelemetry=47 dashboardPublish=9 candiag=15 outsideRobotPeriodic=14 gc=0 (ms)
+[t=54.373 en+1.499s] PDH faults: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=54.373 en+1.499s] GAP CANcoder 31 (FL encoder) 113ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=54.373 en+1.499s] STICKY SET TalonFX 21 (FL steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=54.373 en+1.499s] FAULT SET TalonFX 22 (FR steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=54.373 en+1.499s] STICKY SET TalonFX 22 (FR steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=54.373 en+1.499s] FAULT SET TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+  hr en+1.499 dt=69ms | util=100% REC=  0 TEC=  0 txF=6 | phx= 90% | batt=12.45 | E31:31/12.5 E32:144/12.5 E34:145/12.5 E33:145/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.460] SLOW LOOP dt=127ms: hootReplay+odometry=3 scheduler=11 powerTelemetry=24 dashboardPublish=1 candiag=79 outsideRobotPeriodic=8 gc=9 (ms)
+[t=54.508 en+1.634s] GAP CANcoder 33 (BR encoder) 135ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=54.508 en+1.634s] GAP CANcoder 34 (BL encoder) 149ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=54.508 en+1.634s] GAP CANcoder 32 (FR encoder) 196ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+  hr en+1.634 dt=136ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.45 | E31:7/12.5 E32:33/12.5 E34:32/12.5 E33:32/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.523] SLOW LOOP dt=63ms: hootReplay+odometry=3 scheduler=19 powerTelemetry=23 dashboardPublish=4 candiag=10 outsideRobotPeriodic=5 gc=0 (ms)
+  hr en+1.704 dt=70ms | util=100% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.47 | E31:60/12.5 E32:101/12.5 E34:100/12.5 E33:100/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.601] SLOW LOOP dt=76ms: hootReplay+odometry=2 scheduler=16 powerTelemetry=35 dashboardPublish=1 candiag=11 outsideRobotPeriodic=11 gc=0 (ms)
+[t=54.638 en+1.764s] GAP CANcoder 31 (FL encoder) 66ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=54.638 en+1.764s] GAP CANcoder 33 (BR encoder) 117ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=54.638 en+1.764s] GAP TalonFX 40 (indexer) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+  hr en+1.764 dt=60ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 99% | batt=12.47 | E31:8/12.5 E32:162/12.5 E34:162/12.5 E33:11/12.5 | M21:-0.0A M22:0.0A M24:0.0A M23:-0.0A
+[t=54.653] SLOW LOOP dt=54ms: hootReplay+odometry=4 scheduler=15 powerTelemetry=19 candiag=9 outsideRobotPeriodic=6 gc=0 (ms)
+[t=54.729 en+1.855s] GAP CANcoder 34 (BL encoder) 158ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=54.729 en+1.855s] GAP CANcoder 32 (FR encoder) 172ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+1.855 dt=91ms | util=100% REC=  0 TEC=  0 txF=6 | phx= 99% | batt=12.45 | E31:28/12.5 E32:25/12.5 E34:24/12.5 E33:49/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.761] SLOW LOOP dt=108ms: hootReplay+odometry=3 scheduler=13 powerTelemetry=51 dashboardPublish=9 candiag=16 outsideRobotPeriodic=16 gc=0 (ms)
+[t=54.837 en+1.963s] PDH faults: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=54.837 en+1.963s] GAP CANcoder 33 (BR encoder) 72ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=54.837 en+1.963s] FAULT cleared TalonFX 22 (FR steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=54.837 en+1.963s] FAULT cleared TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+  hr en+1.963 dt=107ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 90% | batt=12.46 | E31:19/12.5 E32:16/12.5 E34:74/12.5 E33:20/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=54.880] SLOW LOOP dt=119ms: hootReplay+odometry=3 scheduler=40 powerTelemetry=32 dashboardPublish=1 candiag=28 outsideRobotPeriodic=15 gc=0 (ms)
+[t=55.014 en+2.140s] GAP CANcoder 33 (BR encoder) 68ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.014 en+2.140s] GAP CANcoder 34 (BL encoder) 146ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.014 en+2.140s] GAP CANcoder 32 (FR encoder) 101ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.014 en+2.140s] GAP CANcoder 31 (FL encoder) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=55.014 en+2.140s] GAP CANcoder 33 (BR encoder) 66ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+  hr en+2.140 dt=178ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 94% | batt=12.46 | E31:12/12.5 E32:31/12.5 E34:12/12.5 E33:8/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.014 en+2.140s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=94% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=128ms V=12.45 E32 ok maxGap=196ms V=12.50 E34 ok maxGap=158ms V=12.45 E33 ok maxGap=135ms V=12.50 | absent: P60 M25 M45 M37
+[t=55.053] SLOW LOOP dt=173ms: hootReplay+odometry=3 scheduler=55 powerTelemetry=67 dashboardPublish=9 candiag=27 outsideRobotPeriodic=11 gc=0 (ms)
+[t=55.133 en+2.259s] GAP CANcoder 31 (FL encoder) 76ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.133 en+2.259s] GAP CANcoder 32 (FR encoder) 117ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=55.133 en+2.259s] GAP CANcoder 33 (BR encoder) 98ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.133 en+2.259s] GAP CANcoder 34 (BL encoder) 107ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+2.259 dt=118ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.44 | E31:27/12.5 E32:13/12.5 E34:13/12.5 E33:21/12.5 | M21:-0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.210] SLOW LOOP dt=157ms: hootReplay+odometry=4 scheduler=12 powerTelemetry=58 dashboardPublish=6 candiag=16 outsideRobotPeriodic=61 gc=7 (ms)
+[t=55.248 en+2.374s] GAP CANcoder 33 (BR encoder) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.248 en+2.374s] GAP CANcoder 32 (FR encoder) 76ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+  hr en+2.374 dt=116ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.45 | E31:16/12.5 E32:10/12.5 E34:59/12.5 E33:13/12.5 | M21:-0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.261] SLOW LOOP dt=51ms: hootReplay+odometry=7 scheduler=11 powerTelemetry=19 dashboardPublish=1 candiag=8 outsideRobotPeriodic=5 gc=0 (ms)
+  hr en+2.456 dt=81ms | util=100% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.47 | E31:66/12.5 E32:80/12.5 E34:147/12.5 E33:59/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.377] SLOW LOOP dt=116ms: hootReplay+odometry=2 scheduler=12 powerTelemetry=52 dashboardPublish=3 candiag=21 outsideRobotPeriodic=26 gc=0 (ms)
+[t=55.423 en+2.549s] GAP TalonFX 43 (shooter 3) 77ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.423 en+2.549s] GAP CANcoder 31 (FL encoder) 74ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.423 en+2.549s] GAP CANcoder 32 (FR encoder) 98ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=55.423 en+2.549s] GAP CANcoder 33 (BR encoder) 117ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+2.549 dt=94ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.46 | E31:34/12.5 E32:11/12.5 E34:15/12.5 E33:57/12.5 | M21:-0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.476] SLOW LOOP dt=99ms: hootReplay+odometry=5 scheduler=12 powerTelemetry=28 dashboardPublish=1 candiag=45 outsideRobotPeriodic=7 gc=0 (ms)
+[t=55.570 en+2.696s] GAP CANcoder 33 (BR encoder) 114ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+  hr en+2.696 dt=147ms | util=  0% REC=  0 TEC=  0 txF=6 | phx= 93% | batt=12.45 | E31:57/12.5 E32:57/12.5 E34:55/12.5 E33:67/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.595] SLOW LOOP dt=120ms: hootReplay+odometry=2 scheduler=34 powerTelemetry=49 dashboardPublish=9 candiag=14 outsideRobotPeriodic=11 gc=0 (ms)
+[t=55.634 en+2.760s] GAP CANcoder 31 (FL encoder) 78ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=55.634 en+2.760s] GAP CANcoder 32 (FR encoder) 93ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=55.634 en+2.760s] GAP CANcoder 33 (BR encoder) 107ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=55.634 en+2.760s] GAP CANcoder 34 (BL encoder) 110ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+  hr en+2.760 dt=63ms | util=100% REC=  0 TEC=  0 txF=6 | phx= 93% | batt=12.45 | E31:12/12.5 E32:8/12.5 E34:8/12.5 E33:20/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.652] SLOW LOOP dt=57ms: hootReplay+odometry=4 scheduler=12 powerTelemetry=20 dashboardPublish=2 candiag=9 outsideRobotPeriodic=9 gc=0 (ms)
+  hr en+2.819 dt=60ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.46 | E31:30/12.5 E32:39/12.5 E34:17/12.5 E33:38/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.721] SLOW LOOP dt=69ms: hootReplay+odometry=2 scheduler=10 powerTelemetry=25 dashboardPublish=4 candiag=8 outsideRobotPeriodic=20 gc=11 (ms)
+[t=55.767 en+2.893s] GAP CANcoder 33 (BR encoder) 66ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+  hr en+2.893 dt=74ms | util=100% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.47 | E31:4/12.5 E32:11/12.5 E34:9/12.5 E33:9/12.5 | M21:-0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.791] SLOW LOOP dt=70ms: hootReplay+odometry=2 scheduler=11 powerTelemetry=29 dashboardPublish=4 candiag=11 outsideRobotPeriodic=13 gc=0 (ms)
+[t=55.837 en+2.963s] PDH faults: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=55.837 en+2.963s] GAP CANcoder 33 (BR encoder) 60ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+  hr en+2.963 dt=70ms | util=  0% REC=  0 TEC=  0 txF=6 | phx=100% | batt=12.47 | E31:17/12.5 E32:17/12.5 E34:12/12.5 E33:12/12.5 | M21:0.0A M22:0.0A M24:0.0A M23:0.0A
+[t=55.860] SLOW LOOP dt=69ms: hootReplay+odometry=2 scheduler=12 powerTelemetry=30 dashboardPublish=2 candiag=17 outsideRobotPeriodic=6 gc=0 (ms)
+[t=55.954] SLOW LOOP dt=94ms: hootReplay+odometry=2 scheduler=24 powerTelemetry=35 dashboardPublish=10 candiag=10 outsideRobotPeriodic=12 gc=0 (ms)
+[t=56.005 en+3.131s] GAP CANcoder 34 (BL encoder) 64ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=56.024] SLOW LOOP dt=70ms: hootReplay+odometry=3 scheduler=13 powerTelemetry=33 dashboardPublish=1 candiag=8 outsideRobotPeriodic=11 gc=0 (ms)
+[t=56.100 en+3.226s] GAP CANcoder 32 (FR encoder) 65ms between frames (not a full dropout)  | util=65% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.100 en+3.226s] GAP CANcoder 34 (BL encoder) 68ms between frames (not a full dropout)  | util=65% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=56.100 en+3.226s] status util=65% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[] phx(util=98% REC=0 TEC=0 txFull=6) pdh=12.33V/0A | E31 ok maxGap=78ms V=12.45 E32 ok maxGap=117ms V=12.50 E34 ok maxGap=206ms V=12.45 E33 ok maxGap=117ms V=12.50 | absent: P60 M25 M45 M37
+[t=56.158] SLOW LOOP dt=134ms: hootReplay+odometry=2 scheduler=11 powerTelemetry=61 dashboardPublish=3 candiag=31 outsideRobotPeriodic=27 gc=0 (ms)
+[t=56.262 en+3.388s] GAP CANcoder 33 (BR encoder) 136ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.262 en+3.388s] GAP CANcoder 34 (BL encoder) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.262 en+3.388s] GAP CANcoder 32 (FR encoder) 68ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=56.303] SLOW LOOP dt=145ms: hootReplay+odometry=2 scheduler=47 powerTelemetry=51 dashboardPublish=4 candiag=17 outsideRobotPeriodic=24 gc=0 (ms)
+[t=56.401 en+3.527s] GAP CANcoder 31 (FL encoder) 75ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.401 en+3.527s] GAP CANcoder 32 (FR encoder) 75ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=56.401 en+3.527s] GAP CANcoder 34 (BL encoder) 97ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=56.401 en+3.527s] GAP CANcoder 33 (BR encoder) 126ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=56.429] SLOW LOOP dt=126ms: hootReplay+odometry=5 scheduler=36 powerTelemetry=55 dashboardPublish=2 candiag=20 outsideRobotPeriodic=8 gc=9 (ms)
+[t=56.484] SLOW LOOP dt=55ms: hootReplay+odometry=4 scheduler=12 powerTelemetry=23 dashboardPublish=1 candiag=6 outsideRobotPeriodic=8 gc=0 (ms)
+[t=56.529] SLOW LOOP dt=45ms: hootReplay+odometry=3 scheduler=10 powerTelemetry=19 candiag=5 outsideRobotPeriodic=7 gc=0 (ms)
+[t=56.617] SLOW LOOP dt=88ms: hootReplay+odometry=2 scheduler=9 powerTelemetry=28 dashboardPublish=3 candiag=29 outsideRobotPeriodic=17 gc=0 (ms)
+[t=56.657 en+3.783s] GAP CANcoder 31 (FL encoder) 68ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.657 en+3.783s] GAP TalonFX 40 (indexer) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.657 en+3.783s] GAP CANcoder 32 (FR encoder) 85ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.49V down=[]
+[t=56.657 en+3.783s] GAP CANcoder 34 (BL encoder) 120ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.657 en+3.783s] GAP CANcoder 33 (BR encoder) 120ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=56.679] SLOW LOOP dt=62ms: hootReplay+odometry=5 scheduler=10 powerTelemetry=24 dashboardPublish=1 candiag=10 outsideRobotPeriodic=11 gc=0 (ms)
+[t=56.740 en+3.866s] PDH faults: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=56.786] SLOW LOOP dt=107ms: hootReplay+odometry=2 scheduler=10 powerTelemetry=43 dashboardPublish=6 candiag=31 outsideRobotPeriodic=16 gc=0 (ms)
+[t=56.873 en+3.999s] GAP CANcoder 31 (FL encoder) 63ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=56.873 en+3.999s] GAP CANcoder 32 (FR encoder) 62ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=56.873 en+3.999s] GAP TalonFX 40 (indexer) 63ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.921] SLOW LOOP dt=134ms: hootReplay+odometry=2 scheduler=17 powerTelemetry=59 dashboardPublish=8 candiag=16 outsideRobotPeriodic=32 gc=0 (ms)
+[t=56.975 en+4.101s] GAP CANcoder 33 (BR encoder) 104ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=56.975 en+4.101s] GAP CANcoder 34 (BL encoder) 128ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=56.991] SLOW LOOP dt=70ms: hootReplay+odometry=5 scheduler=14 powerTelemetry=34 dashboardPublish=2 candiag=8 outsideRobotPeriodic=8 gc=7 (ms)
+[t=57.111] SLOW LOOP dt=120ms: hootReplay+odometry=2 scheduler=15 powerTelemetry=51 dashboardPublish=3 candiag=10 outsideRobotPeriodic=38 gc=0 (ms)
+[t=57.148 en+4.274s] GAP CANcoder 31 (FL encoder) 90ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=57.148 en+4.274s] GAP CANcoder 32 (FR encoder) 89ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=57.148 en+4.274s] GAP CANcoder 34 (BL encoder) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=57.148 en+4.274s] GAP CANcoder 33 (BR encoder) 141ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=57.148 en+4.274s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=90ms V=12.45 E32 ok maxGap=89ms V=12.50 E34 ok maxGap=128ms V=12.45 E33 ok maxGap=141ms V=12.50 | absent: P60 M25 M45 M37
+[t=57.171] SLOW LOOP dt=60ms: hootReplay+odometry=1 scheduler=13 powerTelemetry=22 dashboardPublish=1 candiag=12 outsideRobotPeriodic=10 gc=0 (ms)
+[t=57.224 en+4.350s] PDH faults: none -> Breaker10|Breaker11|Breaker15
+[t=57.224 en+4.350s] GAP CANcoder 34 (BL encoder) 65ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=57.249] SLOW LOOP dt=79ms: hootReplay+odometry=2 scheduler=9 powerTelemetry=32 dashboardPublish=10 candiag=17 outsideRobotPeriodic=8 gc=0 (ms)
+[t=57.284 en+4.410s] GAP CANcoder 32 (FR encoder) 74ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=57.284 en+4.410s] GAP CANcoder 34 (BL encoder) 64ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=57.321] SLOW LOOP dt=72ms: hootReplay+odometry=4 scheduler=9 powerTelemetry=20 dashboardPublish=3 candiag=20 outsideRobotPeriodic=16 gc=0 (ms)
+[t=57.475 en+4.601s] GAP TalonFX 43 (shooter 3) 68ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=57.475 en+4.601s] GAP CANcoder 31 (FL encoder) 84ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=57.475 en+4.601s] GAP CANcoder 32 (FR encoder) 80ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=57.475 en+4.601s] GAP CANcoder 34 (BL encoder) 110ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=57.475 en+4.601s] GAP CANcoder 33 (BR encoder) 115ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=57.557] SLOW LOOP dt=236ms: hootReplay+odometry=2 scheduler=79 powerTelemetry=68 dashboardPublish=6 candiag=52 outsideRobotPeriodic=29 gc=0 (ms)
+[t=57.632 en+4.758s] GAP TalonFX 40 (indexer) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=57.632 en+4.758s] GAP CANcoder 31 (FL encoder) 66ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=57.632 en+4.758s] GAP CANcoder 32 (FR encoder) 108ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=57.675] SLOW LOOP dt=119ms: hootReplay+odometry=4 scheduler=16 powerTelemetry=54 dashboardPublish=1 candiag=14 outsideRobotPeriodic=29 gc=10 (ms)
+[t=57.728 en+4.854s] GAP CANcoder 33 (BR encoder) 124ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=57.728 en+4.854s] GAP CANcoder 34 (BL encoder) 135ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=57.746] SLOW LOOP dt=70ms: hootReplay+odometry=2 scheduler=13 powerTelemetry=33 dashboardPublish=5 candiag=12 outsideRobotPeriodic=6 gc=0 (ms)
+[t=57.833 en+4.959s] PDH faults: Breaker10|Breaker11|Breaker15 -> Breaker6
+[t=57.918] SLOW LOOP dt=172ms: hootReplay+odometry=7 scheduler=11 powerTelemetry=68 dashboardPublish=2 candiag=33 outsideRobotPeriodic=51 gc=0 (ms)
+[t=57.969 en+5.095s] GAP CANcoder 32 (FR encoder) 81ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=57.969 en+5.095s] GAP CANcoder 33 (BR encoder) 103ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=57.969 en+5.095s] GAP CANcoder 34 (BL encoder) 128ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=57.983] SLOW LOOP dt=66ms: hootReplay+odometry=3 scheduler=20 powerTelemetry=26 dashboardPublish=3 candiag=7 outsideRobotPeriodic=7 gc=0 (ms)
+[t=58.023 en+5.149s] GAP CANcoder 32 (FR encoder) 62ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=58.042] SLOW LOOP dt=59ms: hootReplay+odometry=2 scheduler=9 powerTelemetry=27 dashboardPublish=1 candiag=10 outsideRobotPeriodic=9 gc=0 (ms)
+[t=58.153 en+5.279s] GAP CANcoder 32 (FR encoder) 90ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=58.153 en+5.279s] GAP CANcoder 33 (BR encoder) 83ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=58.153 en+5.279s] GAP CANcoder 34 (BL encoder) 133ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=58.153 en+5.279s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=84ms V=12.45 E32 ok maxGap=108ms V=12.50 E34 ok maxGap=135ms V=12.45 E33 ok maxGap=124ms V=12.50 | absent: P60 M25 M45 M37
+[t=58.225] SLOW LOOP dt=182ms: hootReplay+odometry=2 scheduler=42 powerTelemetry=58 nt+robotData=4 dashboardPublish=5 candiag=39 outsideRobotPeriodic=32 gc=0 (ms)
+[t=58.285] SLOW LOOP dt=61ms: hootReplay+odometry=9 scheduler=11 powerTelemetry=21 nt+robotData=4 dashboardPublish=1 candiag=10 outsideRobotPeriodic=6 gc=0 (ms)
+[t=58.389 en+5.515s] PDH faults: Breaker6 -> Breaker6|Breaker10|Breaker11
+[t=58.389 en+5.515s] GAP TalonFX 40 (indexer) 65ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=58.389 en+5.515s] GAP CANcoder 32 (FR encoder) 81ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=58.389 en+5.515s] GAP TalonFX 43 (shooter 3) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=58.389 en+5.515s] GAP CANcoder 33 (BR encoder) 103ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=58.389 en+5.515s] FAULT SET TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=58.453] SLOW LOOP dt=168ms: hootReplay+odometry=2 scheduler=14 powerTelemetry=72 dashboardPublish=15 candiag=28 outsideRobotPeriodic=37 gc=8 (ms)
+[t=58.522 en+5.648s] GAP CANcoder 34 (BL encoder) 120ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=58.522 en+5.648s] GAP CANcoder 32 (FR encoder) 64ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=58.522 en+5.648s] GAP CANcoder 33 (BR encoder) 101ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=58.553] SLOW LOOP dt=100ms: hootReplay+odometry=3 scheduler=9 powerTelemetry=55 dashboardPublish=2 candiag=11 outsideRobotPeriodic=20 gc=0 (ms)
+[t=58.600] SLOW LOOP dt=47ms: hootReplay+odometry=2 scheduler=10 powerTelemetry=21 dashboardPublish=1 candiag=5 outsideRobotPeriodic=8 gc=0 (ms)
+[t=58.649 en+5.775s] GAP CANcoder 33 (BR encoder) 83ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=58.649 en+5.775s] GAP CANcoder 31 (FL encoder) 118ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=58.649 en+5.775s] GAP CANcoder 34 (BL encoder) 112ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=58.690] SLOW LOOP dt=90ms: hootReplay+odometry=2 scheduler=13 powerTelemetry=32 dashboardPublish=1 candiag=31 outsideRobotPeriodic=10 gc=0 (ms)
+[t=58.823] SLOW LOOP dt=133ms: hootReplay+odometry=2 scheduler=40 powerTelemetry=52 dashboardPublish=2 candiag=26 outsideRobotPeriodic=12 gc=0 (ms)
+[t=58.861 en+5.987s] PDH faults: Breaker6|Breaker10|Breaker11 -> none
+[t=58.861 en+5.987s] GAP CANcoder 31 (FL encoder) 181ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=58.861 en+5.987s] FAULT SET TalonFX 22 (FR steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=58.861 en+5.987s] FAULT cleared TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=58.861 en+5.987s] FAULT SET TalonFX 23 (BR steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=58.891] SLOW LOOP dt=67ms: hootReplay+odometry=4 scheduler=12 powerTelemetry=18 dashboardPublish=4 candiag=24 outsideRobotPeriodic=5 gc=0 (ms)
+[t=58.931 en+6.057s] GAP CANcoder 32 (FR encoder) 137ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=58.931 en+6.057s] DROPOUT CANcoder 33 (BR encoder): last frame 235ms ago, status=OK, lastV=12.45  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=58.949] SLOW LOOP dt=58ms: hootReplay+odometry=2 scheduler=8 powerTelemetry=29 dashboardPublish=2 candiag=10 outsideRobotPeriodic=7 gc=0 (ms)
+[t=59.009 en+6.135s] DROPOUT CANcoder 34 (BL encoder): last frame 245ms ago, status=OK, lastV=12.45  | util=90% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[E33]
+[t=59.009 en+6.135s] RECOVER CANcoder 33 (BR encoder) after 0.077s, V=12.45  | util=90% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[E34,E33]
+[t=59.057 en+6.183s] RECOVER CANcoder 34 (BL encoder) after 0.048s, V=12.45  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[E34]
+[t=59.117 en+6.243s] GAP CANcoder 34 (BL encoder) 71ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=59.117 en+6.243s] GAP CANcoder 31 (FL encoder) 164ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.117 en+6.243s] GAP CANcoder 32 (FR encoder) 120ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.166 en+6.292s] GAP CANcoder 34 (BL encoder) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=59.166 en+6.292s] FAULT cleared TalonFX 22 (FR steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=59.166 en+6.292s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[] phx(util=97% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=181ms V=12.45 E32 ok maxGap=207ms V=12.50 E34 ok maxGap=247ms V=12.45 E33 ok maxGap=239ms V=12.50 | absent: P60 M25 M45 M37
+[t=59.243 en+6.369s] DROPOUT CANcoder 33 (BR encoder): last frame 223ms ago, status=OK, lastV=12.50  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=59.438 en+6.564s] GAP CANcoder 33 (BR encoder) 70ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[E33]
+[t=59.438 en+6.564s] GAP CANcoder 34 (BL encoder) 77ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[E33]
+[t=59.438 en+6.564s] GAP CANcoder 32 (FR encoder) 179ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[E33]
+[t=59.438 en+6.564s] RECOVER CANcoder 33 (BR encoder) after 0.195s, V=12.50  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[E33]
+[t=59.714 en+6.840s] GAP CANcoder 31 (FL encoder) 76ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=59.714 en+6.840s] GAP CANcoder 33 (BR encoder) 92ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.714 en+6.840s] GAP CANcoder 32 (FR encoder) 176ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=59.793 en+6.919s] GAP CANcoder 31 (FL encoder) 101ms between frames (not a full dropout)  | util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.793 en+6.919s] GAP CANcoder 33 (BR encoder) 82ms between frames (not a full dropout)  | util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.793 en+6.919s] FAULT cleared TalonFX 23 (BR steer) RemoteSensorDataInvalid  | util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.932 en+7.058s] GAP CANcoder 34 (BL encoder) 130ms between frames (not a full dropout)  | util=97% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.932 en+7.058s] GAP CANcoder 33 (BR encoder) 105ms between frames (not a full dropout)  | util=97% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.932 en+7.058s] GAP CANcoder 31 (FL encoder) 142ms between frames (not a full dropout)  | util=97% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.932 en+7.058s] GAP CANcoder 32 (FR encoder) 139ms between frames (not a full dropout)  | util=97% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=59.997 en+7.123s] GAP CANcoder 33 (BR encoder) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=60.081 en+7.207s] GAP CANcoder 34 (BL encoder) 116ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.173 en+7.299s] GAP CANcoder 33 (BR encoder) 98ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.173 en+7.299s] GAP CANcoder 34 (BL encoder) 105ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=60.173 en+7.299s] GAP CANcoder 31 (FL encoder) 163ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.173 en+7.299s] GAP CANcoder 32 (FR encoder) 142ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=60.173 en+7.299s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[] phx(util=99% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=224ms V=12.45 E32 ok maxGap=179ms V=12.50 E34 ok maxGap=228ms V=12.45 E33 ok maxGap=225ms V=12.45 | absent: P60 M25 M45 M37
+[t=60.350 en+7.476s] GAP CANcoder 33 (BR encoder) 105ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.350 en+7.476s] DROPOUT CANcoder 34 (BL encoder): last frame 213ms ago, status=OK, lastV=12.45  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=60.424 en+7.550s] GAP CANcoder 31 (FL encoder) 93ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[E34]
+[t=60.424 en+7.550s] GAP CANcoder 33 (BR encoder) 114ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[E34]
+[t=60.424 en+7.550s] RECOVER CANcoder 34 (BL encoder) after 0.074s, V=12.45  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[E34]
+[t=60.596 en+7.722s] GAP CANcoder 33 (BR encoder) 65ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.663 en+7.789s] GAP CANcoder 31 (FL encoder) 108ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.663 en+7.789s] GAP CANcoder 32 (FR encoder) 101ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.663 en+7.789s] GAP CANcoder 33 (BR encoder) 125ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.663 en+7.789s] GAP CANcoder 34 (BL encoder) 139ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=60.880 en+8.006s] GAP CANcoder 31 (FL encoder) 79ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=60.880 en+8.006s] GAP CANcoder 32 (FR encoder) 92ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=60.880 en+8.006s] GAP CANcoder 33 (BR encoder) 106ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=60.880 en+8.006s] DROPOUT CANcoder 34 (BL encoder): last frame 229ms ago, status=OK, lastV=12.45  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=61.014 en+8.140s] GAP CANcoder 31 (FL encoder) 66ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[E34]
+[t=61.014 en+8.140s] RECOVER CANcoder 34 (BL encoder) after 0.134s, V=12.45  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[E34]
+[t=61.116 en+8.242s] GAP CANcoder 31 (FL encoder) 72ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=61.116 en+8.242s] FAULT SET TalonFX 22 (FR steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=61.116 en+8.242s] FAULT SET TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=61.116 en+8.242s] FAULT SET TalonFX 23 (BR steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[]
+[t=61.220 en+8.346s] GAP CANcoder 33 (BR encoder) 123ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=61.220 en+8.346s] GAP CANcoder 34 (BL encoder) 139ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=61.220 en+8.346s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[] phx(util=99% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=108ms V=12.45 E32 ok maxGap=233ms V=12.50 E34 ok maxGap=292ms V=12.45 E33 ok maxGap=125ms V=12.50 | absent: P60 M25 M45 M37
+[t=61.311 en+8.437s] GAP CANcoder 31 (FL encoder) 72ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=10.87V down=[]
+[t=61.433 en+8.558s] GAP CANcoder 31 (FL encoder) 76ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=10.65V down=[]
+[t=61.433 en+8.558s] GAP CANcoder 34 (BL encoder) 95ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=10.65V down=[]
+[t=61.433 en+8.558s] GAP CANcoder 32 (FR encoder) 148ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=10.80V down=[]
+[t=61.533 en+8.659s] GAP CANcoder 34 (BL encoder) 87ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=11.42V down=[]
+[t=61.619 en+8.745s] GAP CANcoder 31 (FL encoder) 65ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.68V down=[]
+[t=61.619 en+8.745s] GAP CANcoder 32 (FR encoder) 81ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.64V down=[]
+[t=61.619 en+8.745s] GAP CANcoder 34 (BL encoder) 102ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.64V down=[]
+[t=61.619 en+8.745s] FAULT cleared TalonFX 22 (FR steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.69V down=[]
+[t=61.619 en+8.745s] FAULT cleared TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.72V down=[]
+[t=61.619 en+8.745s] FAULT cleared TalonFX 23 (BR steer) RemoteSensorDataInvalid  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.69V down=[]
+[t=61.718 en+8.844s] GAP CANcoder 34 (BL encoder) 74ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=11.08V down=[]
+[t=61.871 en+8.997s] GAP CANcoder 34 (BL encoder) 79ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.47V down=[]
+[t=61.993 en+9.119s] GAP CANcoder 32 (FR encoder) 122ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.28V down=[]
+[t=61.993 en+9.119s] GAP CANcoder 31 (FL encoder) 66ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.36V down=[]
+[t=61.993 en+9.119s] GAP CANcoder 34 (BL encoder) 104ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.40V down=[]
+[t=62.194 en+9.320s] GAP TalonFX 43 (shooter 3) 75ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.56V down=[]
+[t=62.194 en+9.320s] GAP CANcoder 34 (BL encoder) 80ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.64V down=[]
+[t=62.194 en+9.320s] GAP CANcoder 31 (FL encoder) 155ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.54V down=[]
+[t=62.194 en+9.320s] GAP CANcoder 32 (FR encoder) 128ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.54V down=[]
+[t=62.277 en+9.403s] status util=98% REC=0 TEC=0 txFull=6 busOff=0 batt=11.01V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=210ms V=11.10 E32 ok maxGap=148ms V=11.15 E34 ok maxGap=104ms V=11.70 E33 ok maxGap=206ms V=12.00 | absent: P60 M25 M45 M37
+[t=62.388 en+9.514s] GAP CANcoder 32 (FR encoder) 95ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.38V down=[]
+[t=62.388 en+9.514s] GAP CANcoder 31 (FL encoder) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.37V down=[]
+[t=62.388 en+9.514s] GAP CANcoder 34 (BL encoder) 107ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.33V down=[]
+[t=62.544 en+9.670s] GAP CANcoder 31 (FL encoder) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=10.98V down=[]
+[t=62.645 en+9.771s] GAP CANcoder 31 (FL encoder) 139ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=11.66V down=[]
+[t=62.856 en+9.982s] GAP CANcoder 32 (FR encoder) 63ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.76V down=[]
+[t=62.935 en+10.060s] GAP CANcoder 31 (FL encoder) 124ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.00V down=[]
+[t=62.988 en+10.114s] GAP CANcoder 31 (FL encoder) 71ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.59V down=[]
+[t=63.268 en+10.394s] GAP CANcoder 31 (FL encoder) 144ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.50V down=[]
+[t=63.356 en+10.482s] GAP TalonFX 40 (indexer) 62ms between frames (not a full dropout)  | util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=11.62V down=[]
+[t=63.356 en+10.482s] status util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.13V down=[] phx(util=98% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=144ms V=11.50 E32 ok maxGap=95ms V=12.45 E34 ok maxGap=107ms V=12.40 E33 ok maxGap=123ms V=12.20 | absent: P60 M25 M45 M37
+[t=63.523 en+10.649s] GAP CANcoder 32 (FR encoder) 154ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=11.76V down=[]
+[t=63.523 en+10.649s] GAP CANcoder 32 (FR encoder) 68ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=11.83V down=[]
+[t=63.782 en+10.908s] PDH faults: none -> Breaker6
+[t=63.914 en+11.040s] GAP TalonFX 43 (shooter 3) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.41V down=[]
+[t=64.375 en+11.501s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.34V down=[] phx(util=99% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=66ms V=12.30 E32 ok maxGap=154ms V=12.35 E34 ok maxGap=97ms V=12.30 E33 ok maxGap=80ms V=12.35 | absent: P60 M25 M45 M37
+[t=64.917 en+12.043s] GAP TalonFX 29 (pickup) 62ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.33V down=[]
+[t=65.183 en+12.309s] PDH faults: Breaker6 -> Breaker6|Breaker10|Breaker11
+[t=65.394 en+12.520s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.03V down=[] phx(util=93% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=84ms V=12.35 E32 ok maxGap=103ms V=12.40 E34 ok maxGap=106ms V=12.35 E33 ok maxGap=141ms V=12.40 | absent: P60 M25 M45 M37
+[t=65.622 en+12.748s] PDH faults: Breaker6|Breaker10|Breaker11 -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=65.622 en+12.748s] FAULT SET TalonFX 23 (BR steer) RemoteSensorDataInvalid  | util=60% REC=0 TEC=0 txFull=6 busOff=0 batt=12.37V down=[]
+[t=66.245 en+13.371s] FAULT cleared TalonFX 23 (BR steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.33V down=[]
+[t=66.394 en+13.520s] GAP TalonFX 40 (indexer) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.36V down=[]
+[t=66.394 en+13.520s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.35V down=[] phx(util=99% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=66ms V=12.25 E32 ok maxGap=94ms V=12.25 E34 ok maxGap=143ms V=12.25 E33 ok maxGap=148ms V=12.25 | absent: P60 M25 M45 M37
+[t=67.467 en+14.593s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.41V down=[] phx(util=98% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=82ms V=12.40 E32 ok maxGap=110ms V=12.40 E34 ok maxGap=123ms V=12.20 E33 ok maxGap=113ms V=12.40 | absent: P60 M25 M45 M37
+[t=68.318 en+15.444s] PDH faults: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=68.318 en+15.444s] FAULT SET TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.33V down=[]
+[t=68.413 en+15.539s] DROPOUT CANcoder 34 (BL encoder): last frame 258ms ago, status=OK, lastV=12.40  | util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=11.84V down=[]
+[t=68.480 en+15.606s] RECOVER CANcoder 34 (BL encoder) after 0.068s, V=12.40  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.29V down=[E34]
+[t=68.480 en+15.606s] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.28V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=84ms V=12.20 E32 ok maxGap=120ms V=12.30 E34 ok maxGap=260ms V=12.40 E33 ok maxGap=143ms V=12.25 | absent: P60 M25 M45 M37
+[t=68.749 en+15.875s] FAULT cleared TalonFX 24 (BL steer) RemoteSensorDataInvalid  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.37V down=[]
+[t=68.869 en+15.995s] GAP TalonFX 40 (indexer) 67ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.32V down=[]
+[t=69.509 en+16.635s] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.33V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=100ms V=12.30 E32 ok maxGap=214ms V=12.40 E34 ok maxGap=202ms V=12.25 E33 ok maxGap=183ms V=12.40 | absent: P60 M25 M45 M37
+[t=70.557 en+17.683s] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=11.89V down=[] phx(util=99% REC=0 TEC=0 txFull=6) pdh=0.00V/0A | E31 ok maxGap=101ms V=12.05 E32 ok maxGap=202ms V=12.25 E34 ok maxGap=198ms V=12.25 E33 ok maxGap=116ms V=12.10 | absent: P60 M25 M45 M37
+======== DISABLE after ENABLE #1, 17.95s enabled ========
+---- SUMMARY: THIS ENABLE (17.9s) ----
+bus rio: util avg=45% max=100% | REC max=0 TEC max=0 | txFull +0 | busOff +0
+bus phoenix: util max=100% | REC max=0 TEC max=0 | txFull +0 | busOff +0
+power: battery min=10.37V | rio brownouts=0 | pdh min=0.00V max total=0A | loop dt max=248ms overruns(>25ms)=185
+loop: slow loops(>40ms)=185 | per-section ms avg/max: hootReplay+odometry=2.5/13 scheduler=19.0/94 powerTelemetry=38.4/126 nt+robotData=0.5/5 dashboardPublish=3.2/19 candiag=17.2/79 outsideRobotPeriodic=16.5/61
+device                     dropouts   down(s) maxGap(ms)  gaps>60ms      minV      maxA  faults seen
+CANcoder 31 (FL encoder)          0      0.00        224         67     10.50         -  -
+CANcoder 32 (FR encoder)          0      0.00        233         73     10.65         -  -
+CANcoder 34 (BL encoder)          4      0.32        292         79     10.50         -  -
+CANcoder 33 (BR encoder)          2      0.27        239         86     10.50         -  -
+TalonFX 21 (FL steer)             0      0.00          0          0      9.63      29.4  sticky:RemoteSensorDataInvalid
+TalonFX 1 (FL drive)              0      0.00          0          0      9.43       9.1  -
+TalonFX 22 (FR steer)             0      0.00          0          0     10.55      16.3  RemoteSensorDataInvalid|sticky:RemoteSensorDataInvalid
+TalonFX 2 (FR drive)              0      0.00          0          0      9.23       9.8  -
+TalonFX 24 (BL steer)             0      0.00          0          0      9.60      33.7  sticky:RemoteSensorDataInvalid|RemoteSensorDataInvalid
+TalonFX 4 (BL drive)              0      0.00          0          0      9.58      13.0  -
+TalonFX 23 (BR steer)             0      0.00          0          0     10.20      30.1  sticky:RemoteSensorDataInvalid|RemoteSensorDataInvalid
+TalonFX 3 (BR drive)              0      0.00          0          0      9.08      13.8  -
+Pigeon2 60 (gyro)            ABSENT since boot (never responded)
+TalonFX 28 (intake deploy)        0      0.00          0          0     10.35       0.0  -
+TalonFX 29 (pickup)               0      0.00         62          1     10.65       0.0  -
+TalonFX 25 (hopper)          ABSENT since boot (never responded)
+TalonFX 40 (indexer)              0      0.00         67          9     10.58       0.0  -
+TalonFX 45 (climber)         ABSENT since boot (never responded)
+TalonFX 37 (climber grabber)   ABSENT since boot (never responded)
+TalonFX 41 (shooter 1)            0      0.00          0          0     10.43       0.0  -
+TalonFX 42 (shooter 2)            0      0.00          0          0     10.45       0.0  -
+TalonFX 43 (shooter 3)            0      0.00         77          5     10.55       0.0  -
+hints:
+  * CANcoders dropped WITHOUT rebooting -> COMMUNICATION problem: CAN wiring/connectors, termination, bus load. (Fault polling is 4Hz; a reboot shorter than that still shows as sticky.)
+  * Steer motors saw RemoteSensorDataInvalid -> they lost their CANcoder, which is the chatter.
+  * Bus utilization > 80% -> LOAD is a likely contributor.
+---- SUMMARY: SINCE BOOT ----
+bus rio: util avg=42% max=100% | REC max=0 TEC max=0 | txFull +0 | busOff +0
+bus phoenix: util max=100% | REC max=0 TEC max=0 | txFull +0 | busOff +0
+power: battery min=10.37V | rio brownouts=0 | pdh min=0.00V max total=0A | loop dt max=517ms overruns(>25ms)=485
+loop: slow loops(>40ms)=486 | per-section ms avg/max: hootReplay+odometry=3.8/37 scheduler=23.5/608 powerTelemetry=41.5/168 nt+robotData=0.5/11 dashboardPublish=3.6/158 candiag=16.5/167 outsideRobotPeriodic=19.2/122
+device                     dropouts   down(s) maxGap(ms)  gaps>60ms      minV      maxA  faults seen
+CANcoder 31 (FL encoder)          0      0.00        224         71     10.50         -  -
+CANcoder 32 (FR encoder)          0      0.00        233         79     10.65         -  -
+CANcoder 34 (BL encoder)          4      0.32        292         97     10.50         -  -
+CANcoder 33 (BR encoder)          2      0.27        239        103     10.50         -  -
+TalonFX 21 (FL steer)             0      0.00        161          2      9.63      29.4  sticky:RemoteSensorDataInvalid
+TalonFX 1 (FL drive)              0      0.00        156          2      9.43       9.1  -
+TalonFX 22 (FR steer)             0      0.00        156          2     10.55      16.3  RemoteSensorDataInvalid|sticky:RemoteSensorDataInvalid
+TalonFX 2 (FR drive)              0      0.00        154          1      9.23       9.8  -
+TalonFX 24 (BL steer)             0      0.00        149          2      9.60      33.7  sticky:RemoteSensorDataInvalid|RemoteSensorDataInvalid
+TalonFX 4 (BL drive)              0      0.00        155          2      9.58      13.0  -
+TalonFX 23 (BR steer)             0      0.00        154          2     10.20      30.1  sticky:RemoteSensorDataInvalid|RemoteSensorDataInvalid
+TalonFX 3 (BR drive)              0      0.00        155          2      9.08      13.8  -
+Pigeon2 60 (gyro)            ABSENT since boot (never responded)
+TalonFX 28 (intake deploy)        0      0.00        161          2     10.35       0.0  -
+TalonFX 29 (pickup)               0      0.00        159          4     10.65       0.0  -
+TalonFX 25 (hopper)          ABSENT since boot (never responded)
+TalonFX 40 (indexer)              0      0.00        159         12     10.58       0.0  -
+TalonFX 45 (climber)         ABSENT since boot (never responded)
+TalonFX 37 (climber grabber)   ABSENT since boot (never responded)
+TalonFX 41 (shooter 1)            0      0.00        156          2     10.43       0.0  -
+TalonFX 42 (shooter 2)            0      0.00        160          2     10.45       0.0  -
+TalonFX 43 (shooter 3)            0      0.00        161          7     10.55       0.0  -
+hints:
+  * CANcoders dropped WITHOUT rebooting -> COMMUNICATION problem: CAN wiring/connectors, termination, bus load. (Fault polling is 4Hz; a reboot shorter than that still shows as sticky.)
+  * Steer motors saw RemoteSensorDataInvalid -> they lost their CANcoder, which is the chatter.
+  * Bus utilization > 80% -> LOAD is a likely contributor.
+
+[t=71.107 disabled] PDH faults: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=71.107 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=74.055 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=74.546 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=75.608 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.53V/0A | E31 ok maxGap=73ms V=12.45 E32 ok maxGap=59ms V=12.45 E34 ok maxGap=143ms V=12.45 E33 ok maxGap=97ms V=12.45 | absent: P60 M25 M45 M37
+[t=76.635 disabled] GAP TalonFX 29 (pickup) 64ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=79.374 disabled] GAP TalonFX 42 (shooter 2) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=79.374 disabled] GAP TalonFX 43 (shooter 3) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=79.374 disabled] GAP TalonFX 29 (pickup) 64ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=80.409 disabled] GAP TalonFX 43 (shooter 3) 63ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=80.616 disabled] status util=99% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[] phx(util=99% REC=0 TEC=0 txFull=6) pdh=12.52V/0A | E31 ok maxGap=50ms V=12.45 E32 ok maxGap=56ms V=12.50 E34 ok maxGap=74ms V=12.45 E33 ok maxGap=74ms V=12.45 | absent: P60 M25 M45 M37
+[t=84.839 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=85.382 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=85.684 disabled] status util=96% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=96% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=51ms V=12.45 E32 ok maxGap=61ms V=12.50 E34 ok maxGap=68ms V=12.45 E33 ok maxGap=69ms V=12.50 | absent: P60 M25 M45 M37
+[t=85.826 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=86.181 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=89.060 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=89.733 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=90.082 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=90.657 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=90.723 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=92% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=50ms V=12.45 E32 ok maxGap=49ms V=12.50 E34 ok maxGap=72ms V=12.45 E33 ok maxGap=74ms V=12.50 | absent: P60 M25 M45 M37
+[t=91.344 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=91.926 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=92.345 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=92.877 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=93.583 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=94.522 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=95.770 disabled] status util=88% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=49ms V=12.50 E32 ok maxGap=70ms V=12.50 E34 ok maxGap=70ms V=12.50 E33 ok maxGap=62ms V=12.50 | absent: P60 M25 M45 M37
+[t=96.842 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=97.349 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=100.800 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=98% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=53ms V=12.45 E32 ok maxGap=54ms V=12.50 E34 ok maxGap=62ms V=12.50 E33 ok maxGap=63ms V=12.50 | absent: P60 M25 M45 M37
+[t=105.083 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=105.663 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=105.844 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=58ms V=12.45 E32 ok maxGap=58ms V=12.50 E34 ok maxGap=73ms V=12.45 E33 ok maxGap=67ms V=12.50 | absent: P60 M25 M45 M37
+[t=110.871 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=55ms V=12.45 E32 ok maxGap=76ms V=12.50 E34 ok maxGap=77ms V=12.45 E33 ok maxGap=76ms V=12.50 | absent: P60 M25 M45 M37
+[t=111.844 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=112.750 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=113.556 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=114.130 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=115.929 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[] phx(util=73% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=60ms V=12.45 E32 ok maxGap=64ms V=12.50 E34 ok maxGap=76ms V=12.45 E33 ok maxGap=77ms V=12.45 | absent: P60 M25 M45 M37
+[t=119.564 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=120.113 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=121.002 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[] phx(util=88% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=59ms V=12.45 E32 ok maxGap=61ms V=12.50 E34 ok maxGap=77ms V=12.45 E33 ok maxGap=63ms V=12.50 | absent: P60 M25 M45 M37
+[t=121.819 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=122.678 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=125.591 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=126.019 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=66ms V=12.45 E32 ok maxGap=63ms V=12.50 E34 ok maxGap=65ms V=12.50 E33 ok maxGap=63ms V=12.50 | absent: P60 M25 M45 M37
+[t=126.200 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=130.574 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=130.996 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=131.074 disabled] status util=95% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=43ms V=12.50 E32 ok maxGap=68ms V=12.50 E34 ok maxGap=77ms V=12.50 E33 ok maxGap=60ms V=12.50 | absent: P60 M25 M45 M37
+[t=133.566 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=134.483 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=136.097 disabled] status util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=50ms V=12.45 E32 ok maxGap=56ms V=12.50 E34 ok maxGap=74ms V=12.45 E33 ok maxGap=67ms V=12.45 | absent: P60 M25 M45 M37
+[t=136.837 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=137.228 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=138.332 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=138.720 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=141.136 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=52ms V=12.50 E32 ok maxGap=66ms V=12.50 E34 ok maxGap=63ms V=12.45 E33 ok maxGap=64ms V=12.50 | absent: P60 M25 M45 M37
+[t=142.083 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=142.474 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=143.586 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=144.121 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=146.176 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=96% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=73ms V=12.45 E32 ok maxGap=66ms V=12.50 E34 ok maxGap=66ms V=12.45 E33 ok maxGap=67ms V=12.50 | absent: P60 M25 M45 M37
+[t=146.593 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=146.954 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=148.072 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=148.492 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=149.591 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=150.033 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=150.830 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=151.236 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=53ms V=12.50 E32 ok maxGap=58ms V=12.50 E34 ok maxGap=70ms V=12.45 E33 ok maxGap=73ms V=12.50 | absent: P60 M25 M45 M37
+[t=151.436 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=152.087 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=152.616 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=156.243 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=44ms V=12.45 E32 ok maxGap=59ms V=12.50 E34 ok maxGap=79ms V=12.45 E33 ok maxGap=63ms V=12.50 | absent: P60 M25 M45 M37
+[t=159.064 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=159.478 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=161.249 disabled] status util=92% REC=0 TEC=0 txFull=6 busOff=0 batt=12.48V down=[] phx(util=95% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=58ms V=12.45 E32 ok maxGap=59ms V=12.50 E34 ok maxGap=68ms V=12.50 E33 ok maxGap=63ms V=12.50 | absent: P60 M25 M45 M37
+[t=161.318 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=161.734 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=162.103 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=162.421 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=164.090 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=164.508 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=166.314 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[] phx(util=94% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=51ms V=12.50 E32 ok maxGap=60ms V=12.50 E34 ok maxGap=69ms V=12.50 E33 ok maxGap=71ms V=12.50 | absent: P60 M25 M45 M37
+[t=166.561 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=166.938 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=170.333 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=170.773 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=171.315 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[] phx(util=93% REC=0 TEC=0 txFull=6) pdh=12.55V/0A | E31 ok maxGap=51ms V=12.45 E32 ok maxGap=55ms V=12.50 E34 ok maxGap=63ms V=12.45 E33 ok maxGap=64ms V=12.50 | absent: P60 M25 M45 M37
+[t=171.846 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=172.241 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=173.343 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=173.813 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15
+[t=176.376 disabled] status util=88% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[] phx(util=100% REC=0 TEC=0 txFull=6) pdh=12.56V/0A | E31 ok maxGap=56ms V=12.45 E32 ok maxGap=62ms V=12.50 E34 ok maxGap=70ms V=12.45 E33 ok maxGap=64ms V=12.50 | absent: P60 M25 M45 M37
+[t=181.429 disabled] status util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[] phx(util=97% REC=0 TEC=0 txFull=6) pdh=12.54V/0A | E31 ok maxGap=56ms V=12.45 E32 ok maxGap=62ms V=12.50 E34 ok maxGap=75ms V=12.45 E33 ok maxGap=65ms V=12.50 | absent: P60 M25 M45 M37
+[t=181.881 disabled] GAP TalonFX 28 (intake deploy) 62ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=182.067 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=182.473 disabled] GAP TalonFX 42 (shooter 2) 61ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.47V down=[]
+[t=183.401 disabled] PDH sticky: none -> Breaker6|Breaker10|Breaker11|Breaker15

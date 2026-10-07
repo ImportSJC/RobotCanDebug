@@ -1,0 +1,129 @@
+==== CAN DROPOUT DIAGNOSTICS ====
+wall clock: 2026-10-07 02:45:47 (roboRIO clock; may read 1970 until the DS connects)
+bus: '' (roboRIO built-in CAN 2.0)  isNetworkFD=false
+stale threshold 200ms, gap warning 60ms
+config DISABLE_POWER_TELEMETRY = true
+config SKIP_SWERVE_POWER_TELEMETRY = false
+config DISABLE_INTAKE = false
+config DISABLE_INDEXER = true
+config DISABLE_HOPPER = true
+config odometryFrequencyHz = 100
+PDH/PDP: type=kRev module=0 channels=24
+---- boot snapshot (sticky faults from BEFORE this code started) ----
+CANcoder 31 (FL encoder): present, fw=26.1.0.0, Vsupply=12.45, magnet=Magnet_Green, sticky=none
+CANcoder 32 (FR encoder): present, fw=26.1.0.0, Vsupply=12.50, magnet=Magnet_Green, sticky=none
+CANcoder 34 (BL encoder): present, fw=26.1.0.0, Vsupply=12.45, magnet=Magnet_Green, sticky=none
+CANcoder 33 (BR encoder): present, fw=26.1.0.0, Vsupply=12.45, magnet=Magnet_Green, sticky=none
+TalonFX 21 (FL steer): present, fw=26.3.0.0, Vsupply=12.50, sticky=RemoteSensorDataInvalid
+TalonFX 1 (FL drive): present, fw=26.3.0.0, Vsupply=12.55, sticky=none
+TalonFX 22 (FR steer): present, fw=26.3.0.0, Vsupply=12.50, sticky=RemoteSensorDataInvalid
+TalonFX 2 (FR drive): present, fw=26.3.0.0, Vsupply=12.48, sticky=none
+TalonFX 24 (BL steer): present, fw=26.3.0.0, Vsupply=12.48, sticky=RemoteSensorDataInvalid
+TalonFX 4 (BL drive): present, fw=26.3.0.0, Vsupply=12.48, sticky=none
+TalonFX 23 (BR steer): present, fw=26.3.0.0, Vsupply=12.35, sticky=RemoteSensorDataInvalid
+TalonFX 3 (BR drive): present, fw=26.3.0.0, Vsupply=12.28, sticky=none
+Pigeon2 60 (gyro): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 28 (intake deploy): present, fw=26.1.1.1, Vsupply=12.08, sticky=Hardware
+TalonFX 29 (pickup): present, fw=26.3.0.0, Vsupply=12.15, sticky=none
+TalonFX 25 (hopper): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 40 (indexer): present, fw=26.3.0.0, Vsupply=12.03, sticky=none
+TalonFX 45 (climber): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 37 (climber grabber): NOT RESPONDING (RxTimeout), fw=?, Vsupply=0.00, sticky=none
+  clearStickyFaults -> TxFailed
+TalonFX 41 (shooter 1): present, fw=26.3.0.0, Vsupply=12.40, sticky=none
+TalonFX 42 (shooter 2): present, fw=26.3.0.0, Vsupply=12.38, sticky=none
+TalonFX 43 (shooter 3): present, fw=26.3.0.0, Vsupply=12.40, sticky=none
+PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15
+sticky faults cleared on all devices; from here on a STICKY event means it happened this run.
+frame gaps are measured by a separate 5ms sampler thread, independent of robot loop timing.
+Type text into SmartDashboard 'CanDiag/Note' or toggle 'CanDiag/Mark' to stamp the log (e.g. 'wiggling FL encoder plug').
+
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.42V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.43V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.42V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 99ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP CANcoder 31 (FL encoder) 161ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP CANcoder 32 (FR encoder) 153ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.43V down=[]
+[t=13.397 disabled] GAP CANcoder 34 (BL encoder) 157ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP CANcoder 33 (BR encoder) 161ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=13.397 disabled] GAP TalonFX 21 (FL steer) 163ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 1 (FL drive) 149ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 22 (FR steer) 149ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 2 (FR drive) 159ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 24 (BL steer) 164ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 4 (BL drive) 162ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 23 (BR steer) 162ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 3 (BR drive) 162ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 102ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 29 (pickup) 160ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 40 (indexer) 140ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 41 (shooter 1) 159ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 42 (shooter 2) 159ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 43 (shooter 3) 137ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 99ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 101ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 106ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 103ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 91ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 99ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=13.397 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] ABSENT Pigeon2 60 (gyro) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] ABSENT TalonFX 25 (hopper) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.397 disabled] ABSENT TalonFX 45 (climber) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] ABSENT TalonFX 37 (climber grabber) has not responded since boot (status=RxTimeout); not counted as a dropout  | util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.397 disabled] status util=78% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[] phx(util=89% REC=0 TEC=0 txFull=6) pdh=12.52V/0A | E31 ok maxGap=161ms V=12.45 E32 ok maxGap=153ms V=12.45 E34 ok maxGap=157ms V=12.45 E33 ok maxGap=161ms V=12.45 | absent: P60 M25 M45 M37
+[t=13.627] SLOW LOOP dt=918ms: hootReplay+odometry=34 scheduler=518 nt+robotData=23 dashboardPublish=123 candiag=175 outsideRobotPeriodic=46 gc=0 (ms)
+[t=13.694 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=13.694 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=13.763] SLOW LOOP dt=145ms: hootReplay+odometry=43 scheduler=29 nt+robotData=2 dashboardPublish=3 candiag=18 outsideRobotPeriodic=50 gc=0 (ms)
+[t=13.910 disabled] GAP TalonFX 28 (intake deploy) 102ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=13.910 disabled] GAP TalonFX 28 (intake deploy) 98ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.055] SLOW LOOP dt=292ms: hootReplay+odometry=17 scheduler=110 nt+robotData=1 dashboardPublish=18 candiag=88 outsideRobotPeriodic=58 gc=0 (ms)
+[t=14.156 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=62% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.156 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=62% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=14.312] SLOW LOOP dt=257ms: hootReplay+odometry=22 scheduler=73 dashboardPublish=6 candiag=38 outsideRobotPeriodic=118 gc=72 (ms)
+[t=14.416 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP CANcoder 31 (FL encoder) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP CANcoder 32 (FR encoder) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP CANcoder 34 (BL encoder) 68ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP CANcoder 33 (BR encoder) 81ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 21 (FL steer) 72ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 1 (FL drive) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 22 (FR steer) 80ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 2 (FR drive) 78ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 24 (BL steer) 69ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 4 (BL drive) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 23 (BR steer) 72ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 3 (BR drive) 71ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 29 (pickup) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 40 (indexer) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 41 (shooter 1) 79ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 42 (shooter 2) 81ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.416 disabled] GAP TalonFX 43 (shooter 3) 78ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 28 (intake deploy) 101ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 28 (intake deploy) 99ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=14.416 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.714] SLOW LOOP dt=402ms: hootReplay+odometry=16 scheduler=84 dashboardPublish=3 candiag=223 outsideRobotPeriodic=74 gc=0 (ms)
+[t=14.814 disabled] GAP TalonFX 28 (intake deploy) 104ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.44V down=[]
+[t=14.814 disabled] GAP TalonFX 28 (intake deploy) 99ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.46V down=[]
+[t=14.878] SLOW LOOP dt=164ms: hootReplay+odometry=16 scheduler=67 dashboardPublish=17 candiag=42 outsideRobotPeriodic=22 gc=0 (ms)
+[t=14.935 disabled] GAP TalonFX 28 (intake deploy) 97ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=15.029] SLOW LOOP dt=152ms: hootReplay+odometry=5 scheduler=46 dashboardPublish=6 candiag=59 outsideRobotPeriodic=34 gc=0 (ms)
+[t=15.067 disabled] GAP TalonFX 28 (intake deploy) 100ms between frames (not a full dropout)  | util=0% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=15.123] SLOW LOOP dt=93ms: hootReplay+odometry=7 scheduler=28 dashboardPublish=3 candiag=16 outsideRobotPeriodic=39 gc=0 (ms)
+[t=15.148 disabled] GAP TalonFX 28 (intake deploy) 102ms between frames (not a full dropout)  | util=84% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+[t=15.187] SLOW LOOP dt=65ms: hootReplay+odometry=4 scheduler=19 dashboardPublish=2 candiag=25 outsideRobotPeriodic=15 gc=0 (ms)
+[t=15.250 disabled] PDH sticky: Breaker6|Breaker10|Breaker11|Breaker15 -> none
+[t=15.250 disabled] GAP TalonFX 28 (intake deploy) 112ms between frames (not a full dropout)  | util=100% REC=0 TEC=0 txFull=6 busOff=0 batt=12.45V down=[]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
