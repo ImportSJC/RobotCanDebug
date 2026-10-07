@@ -82,6 +82,7 @@ Camera configs (names, transforms, intrinsics) live in `VisionConstants.CONFIGS`
 | `lib/AllianceSymmetry.java` | Flips coordinates for red alliance |
 | `lib/Tracer.java` | Lightweight periodic trace timer (wraps AKit Logger) |
 | `generated/TunerConstants.java` | Auto-generated swerve config — regenerate with Tuner X for 2027 |
+| `diagnostics/CanDropoutDiagnostics.java` | Passive CAN dropout logger → `/home/lvuser/logs/candiag/*.txt`; see `docs/can-dropout-diagnostics.md` |
 
 ### Coprocessor
 

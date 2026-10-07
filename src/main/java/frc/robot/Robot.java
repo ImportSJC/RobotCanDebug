@@ -4,7 +4,15 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.ctre.phoenix6.HootAutoReplay;
+import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.swerve.SwerveModule;
 
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -12,6 +20,9 @@ import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.constants.FeatureSwitches;
+import frc.robot.diagnostics.CanDropoutDiagnostics;
+import frc.robot.generated.TunerConstants;
 import frc.robot.util.GamePeriod;
 
 import org.littletonrobotics.junction.LogFileUtil;
@@ -27,6 +38,8 @@ public class Robot extends LoggedRobot {
     private final RobotContainer m_robotContainer;
 
     private HootAutoReplay m_timeAndJoystickReplay;
+
+    private CanDropoutDiagnostics m_canDiagnostics;
 
     // TODO(2027): Verify autonomous duration for 2027 game rules (was 20.0s in 2026).
     private static final double AUTO_DURATION = 20.0;
@@ -72,9 +85,11 @@ public class Robot extends LoggedRobot {
         m_robotContainer = new RobotContainer();
 
         var modules = m_robotContainer.drivetrain.getModules();
-        for (int i = 0; i < modules.length; i++) {
-            frc.robot.power.PowerTelemetry.register(modules[i].getDriveMotor(), "Drive " + i, "Drivetrain");
-            frc.robot.power.PowerTelemetry.register(modules[i].getSteerMotor(), "Steer " + i, "Drivetrain");
+        if (!FeatureSwitches.SKIP_SWERVE_POWER_TELEMETRY) {
+            for (int i = 0; i < modules.length; i++) {
+                frc.robot.power.PowerTelemetry.register(modules[i].getDriveMotor(), "Drive " + i, "Drivetrain");
+                frc.robot.power.PowerTelemetry.register(modules[i].getSteerMotor(), "Steer " + i, "Drivetrain");
+            }
         }
         // Declarations let replay consume new power inputs without creating mechanism hardware.
         frc.robot.power.PowerTelemetry.declare("rio", Constants.CANBus.INTAKE_MOTOR, "Intake Deploy", "Intake");
@@ -88,7 +103,44 @@ public class Robot extends LoggedRobot {
         frc.robot.power.PowerTelemetry.declare("rio", Constants.CANBus.SHOOTER_MOTOR_3, "Shooter Motor3", "Shooter");
         frc.robot.power.PowerTelemetry.initialize();
 
+        if (FeatureSwitches.CAN_DROPOUT_DIAGNOSTICS && System.getenv("AKIT_LOG_PATH") == null) {
+            m_canDiagnostics = createCanDiagnostics(modules);
+        }
+
         GamePeriod.elasticInit();
+    }
+
+    private static CanDropoutDiagnostics createCanDiagnostics(
+            SwerveModule<TalonFX, TalonFX, CANcoder>[] modules) {
+        String[] names = {"FL", "FR", "BL", "BR"};
+        List<CanDropoutDiagnostics.Device> devices = new ArrayList<>();
+        for (int i = 0; i < modules.length; i++) {
+            String n = i < names.length ? names[i] : "M" + i;
+            devices.add(new CanDropoutDiagnostics.Device(n + " encoder", "CANcoder", modules[i].getEncoder().getDeviceID()));
+        }
+        for (int i = 0; i < modules.length; i++) {
+            String n = i < names.length ? names[i] : "M" + i;
+            devices.add(new CanDropoutDiagnostics.Device(n + " steer", "TalonFX", modules[i].getSteerMotor().getDeviceID()));
+            devices.add(new CanDropoutDiagnostics.Device(n + " drive", "TalonFX", modules[i].getDriveMotor().getDeviceID()));
+        }
+        devices.add(new CanDropoutDiagnostics.Device("gyro", "Pigeon2", TunerConstants.DrivetrainConstants.Pigeon2Id));
+        devices.add(new CanDropoutDiagnostics.Device("intake deploy", "TalonFX", Constants.CANBus.INTAKE_MOTOR));
+        devices.add(new CanDropoutDiagnostics.Device("pickup", "TalonFX", Constants.CANBus.PICKUP_MOTOR));
+        devices.add(new CanDropoutDiagnostics.Device("hopper", "TalonFX", Constants.CANBus.HOPPER_MOTOR));
+        devices.add(new CanDropoutDiagnostics.Device("indexer", "TalonFX", Constants.CANBus.INDEXER_MOTOR));
+        devices.add(new CanDropoutDiagnostics.Device("climber", "TalonFX", Constants.CANBus.CLIMBER_MOTOR));
+        devices.add(new CanDropoutDiagnostics.Device("climber grabber", "TalonFX", Constants.CANBus.CLIMBER_GRABBER));
+        devices.add(new CanDropoutDiagnostics.Device("shooter 1", "TalonFX", Constants.CANBus.SHOOTER_MOTOR_1));
+        devices.add(new CanDropoutDiagnostics.Device("shooter 2", "TalonFX", Constants.CANBus.SHOOTER_MOTOR_2));
+        devices.add(new CanDropoutDiagnostics.Device("shooter 3", "TalonFX", Constants.CANBus.SHOOTER_MOTOR_3));
+
+        Map<String, String> config = new LinkedHashMap<>();
+        config.put("SKIP_SWERVE_POWER_TELEMETRY", String.valueOf(FeatureSwitches.SKIP_SWERVE_POWER_TELEMETRY));
+        config.put("DISABLE_INTAKE", String.valueOf(FeatureSwitches.DISABLE_INTAKE));
+        config.put("DISABLE_INDEXER", String.valueOf(FeatureSwitches.DISABLE_INDEXER));
+        config.put("DISABLE_HOPPER", String.valueOf(FeatureSwitches.DISABLE_HOPPER));
+        config.put("odometryFrequencyHz", String.valueOf(TunerConstants.kCANBus.isNetworkFD() ? 250 : 100));
+        return new CanDropoutDiagnostics(TunerConstants.kCANBus, devices, config);
     }
 
     private void resetSubsystems_init() {
@@ -120,6 +172,7 @@ public class Robot extends LoggedRobot {
         m_robotContainer.drivetrain.publishDrivePidErrors();
         m_robotContainer.drivetrain.publishDistanceToHub();
         m_robotContainer.intake.publishMotorCurrents();
+        if (m_canDiagnostics != null) m_canDiagnostics.periodic();
     }
 
     @Override

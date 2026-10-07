@@ -24,6 +24,12 @@ public class FeatureSwitches {
     // Drive base
     public static final boolean PUBLISH_INDIVIDUAL_DRIVE_CURRENTS = false;
 
+    // CAN dropout debugging (see docs/can-dropout-diagnostics.md)
+    /** Passive CAN bus / device-dropout logger. Adds no CAN traffic beyond a one-time sticky fault clear at boot. */
+    public static final boolean CAN_DROPOUT_DIAGNOSTICS = true;
+    /** Bus-load A/B test: true skips PowerTelemetry on the 8 swerve motors, which raises ~14 of their signals to 50 Hz. */
+    public static final boolean SKIP_SWERVE_POWER_TELEMETRY = false;
+
     // -------------------------------------------------------------------------
     // Vision A/B Test Switches (all OFF by default - baseline is 2026 behavior)
     // -------------------------------------------------------------------------
